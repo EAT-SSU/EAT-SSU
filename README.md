@@ -8,10 +8,11 @@
   
   
   
-### 커밋 메시지
+## Commit Message
 
-커밋태그 : 내용 #이슈번호  
-`(add : login 파일 추가 #20)`
+> 커밋태그 : 내용 #이슈번호  
+
+ex. `add : login 파일 추가 #20`
 
 - 파일 추가 : add
 - 버그 수정 : fix
@@ -20,3 +21,11 @@
 - 기능 추가 : feat
 - 문서 수정 : docs
 - 주석 추가 : comment
+
+## Team Member
+
+|이름|이메일|
+|:---:|:---:|
+|유진|jini1514@soongsil.ac.kr|
+|박윤빈|dbsqlssss0704@gmail.com|
+|이현지|kellylhji@gmail.com|
