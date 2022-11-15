@@ -7,10 +7,10 @@
     tools:context=".loginActivity">
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/tv_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="SignUp"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearEdit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,16 +32,24 @@
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="example@email.com"
+            android:ems="12"
+            android:hint="이메일을 입력하세요"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/editTextTextPassword1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="********"
+            android:ems="12"
+            android:hint="비밀번호를 입력하세요"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"
+            android:hint="비밀번호를 한 번 더 입력하세요"
             android:inputType="textPassword" />
     </LinearLayout>
 
@@ -49,14 +57,15 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="13"
-        android:text="로그인"
-        android:layout_marginTop="30dp"
         android:backgroundTint="@color/main"
+        android:ems="15"
+        android:layout_marginTop="30dp"
+        android:text="회원가입"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
