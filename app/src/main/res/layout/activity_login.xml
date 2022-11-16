@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginActivity">
+    tools:context=".loginActivity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tv_login"
@@ -12,9 +13,9 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="35dp"
+        android:textColor="@color/main"
         app:layout_constraintBottom_toTopOf="@+id/linearEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="12"
+            android:textColor="@color/white"
             android:hint="example@email.com"
             android:inputType="textEmailAddress" />
 
@@ -41,58 +43,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="12"
+            android:textColor="@color/white"
             android:hint="********"
             android:inputType="textPassword" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <Button
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
-        android:orientation="vertical"
+        android:layout_height="50dp"
+        android:layout_marginBottom="7dp"
+        android:backgroundTint="@color/main"
+        android:ems="15"
+        android:outlineProvider="background"
+        android:text="로그인"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearEdit">
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
-            android:backgroundTint="@color/main"
-            android:ems="15"
-            android:text="로그인"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login" />
-
-        <Button
-            android:id="@+id/btn_googleLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:ems="15"
-            android:text="구글로 로그인"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_login" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tv_login" />
 
     <Button
         android:id="@+id/btn_movetosignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이메일로 회원가입하기"
         android:backgroundTint="#00000000"
+        android:outlineProvider="none"
+        android:text="이메일로 회원가입하기"
         android:textColor="@color/main"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <Button
+        android:id="@+id/btn_googleLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/logo_resize"
+        android:ems="13"
+        android:outlineProvider="background"
+        android:paddingLeft="10dp"
+        android:text="구글로 로그인"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearEdit"
+        app:layout_constraintVertical_bias="0.633" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
