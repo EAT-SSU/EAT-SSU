@@ -22,6 +22,7 @@ public class loginActivity extends AppCompatActivity {
     Button mLoginBtn;
     TextView mResigettxt;
     EditText mEmailText, mPasswordText;
+    Button mGoogleLoginBtn;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -36,6 +37,7 @@ public class loginActivity extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.btn_login);
         mEmailText = findViewById(R.id.et_EmailAddress);
         mPasswordText = findViewById(R.id.et_Password);
+        mGoogleLoginBtn = findViewById(R.id.btn_googleLogin);
 
 
         //가입 버튼이 눌리면
