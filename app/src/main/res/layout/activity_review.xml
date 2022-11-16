@@ -6,4 +6,97 @@
     android:layout_height="match_parent"
     tools:context=".ReviewActivity">
 
+    <TextView
+        android:id="@+id/tv_eat_ssu"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="리뷰"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@color/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="메뉴 명"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.3"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/star3"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="70dp"/>
+
+    <ImageView
+        android:id="@+id/star1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="150dp"/>
+
+    <ImageView
+        android:id="@+id/star2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star1"
+        android:layout_marginTop="150dp"
+        />
+
+    <ImageView
+        android:id="@+id/star3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star2"
+        android:layout_marginTop="150dp"
+        />
+
+    <ImageView
+        android:id="@+id/star4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star3"
+        android:layout_marginTop="150dp"
+        />
+
+    <ImageView
+        android:id="@+id/star5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star4"
+        android:layout_marginTop="150dp"
+        />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
