@@ -32,6 +32,15 @@ android {
 }
 
 dependencies {
+
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:31.0.3')
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-auth'
+
     implementation 'com.google.android.gms:play-services-auth:20.1.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
@@ -44,7 +53,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:29.2.0')
+    //implementation platform('com.google.firebase:firebase-bom:29.2.0')
 
     // Add the dependency for the Firebase SDK for Google Analytics
     // When using the BoM, don't specify versions in Firebase dependencies
@@ -55,10 +64,12 @@ dependencies {
 
     // Declare the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-auth'
+    //implementation 'com.google.firebase:firebase-auth'
 
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-core:9.0.0'
+    implementation 'com.google.firebase:firebase-database:9.0.0'
 
 }
 
