@@ -1,32 +1,55 @@
 package com.example.eatssu;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.os.Bundle;
+import android.view.MenuItem;
 
-import com.google.android.material.tabs.TabLayout;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
-    private TabLayout tabLayout;
-    private ViewPager2 viewPager2;
+
+    BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //tabLayout = findViewById(R.id.tab_main);
-        //viewPager2 = findViewById(R.id.vp_main);
+        bottomNavigationView = findViewById(R.id.nav_bottom);
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_container_fragment, new HomeFragment()).commitAllowingStateLoss();
 
-//        adapter.addFragment(new Frag1());
-//        adapter.addFragment(new Frag2());
-//        adapter.addFragment(new Frag3());
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-//        val tabTitleArray = arrayOf(
-//                "아침",
-//                "점심",
-//                "저녁",
-//        )
+                switch (item.getItemId()) {
+                    case R.id.menu_board: {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.main_container_fragment, new BoardFragment())
+                                .commit();
+                        return true;
+                    }
+                    case R.id.menu_home: {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.main_container_fragment, new HomeFragment())
+                                .commit();
+                        return true;
+                    }
+                    case R.id.menu_mypage: {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.main_container_fragment, new MypageFragment())
+                                .commit();
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+        });
+        bottomNavigationView.setSelectedItemId(R.id.menu_home);
     }
 }
