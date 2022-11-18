@@ -1,23 +1,24 @@
 package com.example.eatssu;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void onCreateView(Bundle savedInstanceState) {
 
-        //tabLayout = findViewById(R.id.tab_main);
-        //viewPager2 = findViewById(R.id.vp_main);
+        tabLayout = tabLayout.findViewById(R.id.tab_main);
+        viewPager2 = viewPager2.findViewById(R.id.vp_main);
 
 //        adapter.addFragment(new Frag1());
 //        adapter.addFragment(new Frag2());
