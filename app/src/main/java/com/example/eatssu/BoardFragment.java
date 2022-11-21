@@ -22,18 +22,15 @@ public class BoardFragment extends Fragment {
     private ViewDataBinding binding;
     //Button goWriteButton;
 
-    private View view;
-    private Button goWriteButton;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_board,container,false);
+        View view = inflater.inflate(R.layout.fragment_board, container, false);
 
         //binding = DataBindingUtil.inflate(inflater,R.layout.fragment_board,container,false);
         //View root = binding.getRoot();
 
-        goWriteButton = (Button) view.findViewById(R.id.btn_goWrite);
+        Button goWriteButton = (Button) view.findViewById(R.id.btn_goWrite);
 
         goWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
