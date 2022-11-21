@@ -6,24 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".BoardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_boardtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="맛남게시판"
         android:textSize="30dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView_b"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ScrollView
+        android:id="@+id/scrollView_b"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/tv_boardtitle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,8 +33,22 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RV"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:listitem="@layout/content"/>
+
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_goWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글 쓰기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_b"
+        android:backgroundTint="@color/main"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
