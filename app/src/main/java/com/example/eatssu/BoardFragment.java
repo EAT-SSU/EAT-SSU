@@ -22,16 +22,18 @@ public class BoardFragment extends Fragment {
     private ViewDataBinding binding;
     //Button goWriteButton;
 
+    private View view;
+    private Button goWriteButton;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root=inflater.inflate(R.layout.fragment_board,container,false);
+        view=inflater.inflate(R.layout.fragment_board,container,false);
 
         //binding = DataBindingUtil.inflate(inflater,R.layout.fragment_board,container,false);
         //View root = binding.getRoot();
 
-        /*
-        Button goWriteButton = (Button) getView().findViewById(R.id.btn_goWrite);
+        goWriteButton = (Button) view.findViewById(R.id.btn_goWrite);
 
         goWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +41,8 @@ public class BoardFragment extends Fragment {
                 Intent intent = new Intent(getActivity(),WriteBoardActivity.class);
                 startActivity(intent);
             }
-        });*/
-        return root;
+        });
+        return view;
     }
 
 //    final ArrayAdapter adapter = new ArrayAdapter(this,R.layout.content,R.id.tv_title);
