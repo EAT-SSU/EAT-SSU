@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class LunchFragment extends Fragment {
+    private View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View B=inflater.inflate(R.layout.fragment_lunch,container,false);
+        view = inflater.inflate(R.layout.fragment_lunch, container, false);
 
-        return B;
+        return view;
     }
 }

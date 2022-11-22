@@ -3,12 +3,303 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LunchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5">
+
+            <Button
+                android:id="@+id/lunch_btn_frag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
+                android:tint="@color/main"
+                app:itemIconSize="40dp"></Button>
+
+            <Button
+                android:id="@+id/lunch_btn_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="3"
+                android:background="#00000000"
+                android:text="2022-10-18(화)"
+                android:textColor="@color/main"
+                android:textSize="18dp"
+                android:textStyle="bold">
+
+            </Button>
+
+            <Button
+                android:id="@+id/breakfast_btn_frag2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"></Button>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:id="@+id/breakfast_tv_haksik"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="5"
+                            android:text="학생식당"
+                            android:textSize="17dp"
+                            android:textStyle="bold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/main" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="#00000000"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left"
+                            android:scaleType="center"
+                            ></ImageButton>
+
+                        <TextView
+                            android:id="@+id/item_tv_price"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="price"
+                            android:textColor="@color/main"
+                            android:layout_marginLeft="120dp"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="rate"
+                            android:layout_weight="2"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/main"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/main" >
+
+                    </View>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv1_haksikdata_frag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" >
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="5"
+                            android:text="도담식당"
+                            android:textSize="17dp"
+                            android:textStyle="bold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/main" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:scaleType="center"
+                            ></ImageButton>
+
+                        <TextView
+                            android:id="@+id/item_tv_dodamprice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="price"
+                            android:textColor="@color/main"
+                            android:layout_marginLeft="120dp"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="rate"
+                            android:layout_weight="2"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/main"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/main" >
+
+                    </View>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv1_dodamdata_frag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" >
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="5"
+                            android:text="기숙사식당"
+                            android:textSize="17dp"
+                            android:textStyle="bold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/main" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:scaleType="center"
+                            ></ImageButton>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="price"
+                            android:textColor="@color/main"
+                            android:layout_marginLeft="120dp"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="rate"
+                            android:layout_weight="2"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/main"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/main" >
+
+                    </View>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv1_gisikdata_frag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" >
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
 </FrameLayout>
