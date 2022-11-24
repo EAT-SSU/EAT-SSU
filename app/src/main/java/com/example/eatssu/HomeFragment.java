@@ -37,9 +37,6 @@ public class HomeFragment extends Fragment {
         viewPager2.setAdapter(adapter);
 
         final List<String> tabElement = Arrays.asList("아침", "점심", "저녁");
-//        tabLayout.addTab(tabLayout.newTab().setText("아침"));
-//        tabLayout.addTab(tabLayout.newTab().setText("점심"));
-//        tabLayout.addTab(tabLayout.newTab().setText("저녁"));
 
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
