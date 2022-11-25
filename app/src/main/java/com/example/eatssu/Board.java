@@ -1,8 +1,15 @@
 package com.example.eatssu;
 
+//제목, 본문 내용, 시간, 아이디, 좋아요 개수, 메시지 개수
+
 class Board {
     String title;
     String content;
+    int id;
+    int likeCount;
+    int messageCount;
+    int datetime;
+
 
     Board(){}
 
