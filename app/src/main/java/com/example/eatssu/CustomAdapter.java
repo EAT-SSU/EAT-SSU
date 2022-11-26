@@ -37,7 +37,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         private final TextView id;
         private final TextView likeCount;
         private final TextView messageCount;
-        private final TextView datetime;
+        //private final TextView datetime;
         //private final ImageView image;
 
         public ViewHolder(View view) {
@@ -57,7 +57,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             id = (TextView) view.findViewById(R.id.tv_id);
             likeCount = (TextView) view.findViewById(R.id.tv_likeCount);
             messageCount = (TextView) view.findViewById(R.id.tv_messageCount);
-            datetime = (TextView) view.findViewById(R.id.tv_time);
+            //datetime = (TextView) view.findViewById(R.id.tv_time);
         }
 
         public TextView getTitle() {
@@ -76,13 +76,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             return likeCount;
         }
 
+        /*
         public TextView getMessageCount() {
             return messageCount;
         }
 
         public TextView getDatetime() {
             return datetime;
-        }
+        }*/
     }
 
     public CustomAdapter(){} //생성자
@@ -109,7 +110,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.content.setText(arrayList.get(position).getContent());
         viewHolder.messageCount.setText(String.valueOf(arrayList.get(position).getMessageCount()));
         viewHolder.likeCount.setText(String.valueOf(arrayList.get(position).getLikeCount())); //int형일때
-        viewHolder.datetime.setText(String.valueOf(arrayList.get(position).getDatetime())); //int 형이 맞는지 몰르겟음
+        //viewHolder.datetime.setText(arrayList.get(position).getDatetime()); //int 형이 맞는지 몰르겟음
 
     }
 

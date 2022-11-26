@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -32,7 +33,7 @@ public class BoardFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Board> arrayList;
+    private ArrayList<Board> arrayList = new ArrayList<>();
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -47,7 +48,6 @@ public class BoardFragment extends Fragment {
 
         recyclerView=view.findViewById(R.id.RV);
         recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
-        //layoutManager = new LinearLayoutManager(this); //아 프레그먼트에서 디스 안되는데
         arrayList = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance();
@@ -72,9 +72,11 @@ public class BoardFragment extends Fragment {
                 //안해도 됨
             }
         });
+        arrayList = Board.createContactsList(7);
 
-        adapter = new CustomAdapter(arrayList,this);
+        adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Button goWriteButton = (Button) view.findViewById(R.id.btn_goWrite);
 
@@ -85,10 +87,11 @@ public class BoardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         return view;
     }
 
 //    final ArrayAdapter adapter = new ArrayAdapter(this,R.layout.content,R.id.tv_title);
-
-
 }
