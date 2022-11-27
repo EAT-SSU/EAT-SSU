@@ -63,51 +63,74 @@
         app:layout_constraintTop_toBottomOf="@id/menu"
         android:layout_marginTop="45dp"/>
 
-    <ImageView
-        android:id="@+id/ratestar3"
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:id="@+id/starRateArray"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/conuntstar">-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratestar1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_star_border_24"-->
+<!--            app:layout_constraintRight_toLeftOf="@id/ratestar2"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
+<!--            />-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratestar2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_star_border_24"-->
+<!--            app:layout_constraintRight_toLeftOf="@id/ratestar3"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
+<!--            />-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratestar3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_star_border_24"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
+<!--            />-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratestar4"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_star_border_24"-->
+<!--            app:layout_constraintLeft_toRightOf="@id/ratestar3"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
+<!--            />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/ratestar5"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_star_border_24"-->
+<!--            app:layout_constraintLeft_toRightOf="@id/ratestar4"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
+<!--            />-->
+
+<!--    </LinearLayout>-->
+    <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_star_border_24"
+        android:isIndicator="false"
+        android:progressTint="@color/main"
+        android:numStars="5"
+        android:rating="5"
+        android:stepSize="1"
+        style="@style/Widget.AppCompat.RatingBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/conuntstar"
-       />
-
-    <ImageView
-        android:id="@+id/ratestar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_star_border_24"
-        app:layout_constraintRight_toLeftOf="@id/ratestar3"
-        app:layout_constraintTop_toBottomOf="@id/conuntstar"
+        android:id="@+id/ratingBar"
         />
 
-    <ImageView
-        android:id="@+id/ratestar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_star_border_24"
-        app:layout_constraintRight_toLeftOf="@id/ratestar2"
-        app:layout_constraintTop_toBottomOf="@id/conuntstar"
-        />
 
-    <ImageView
-        android:id="@+id/ratestar4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_star_border_24"
-        app:layout_constraintLeft_toRightOf="@id/ratestar3"
-        app:layout_constraintTop_toBottomOf="@id/conuntstar"
-        />
-
-    <ImageView
-        android:id="@+id/ratestar5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_star_border_24"
-        app:layout_constraintLeft_toRightOf="@id/ratestar4"
-        app:layout_constraintTop_toBottomOf="@id/conuntstar"
-        />
 
     <TextView
         android:id="@+id/chooseRate"
@@ -122,7 +145,7 @@
         android:paddingLeft="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ratestar3"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar"
          />
 
 
@@ -156,9 +179,9 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     tools:ignore="TouchTargetSizeCheck"
-
+                    style="?android:attr/borderlessButtonStyle"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -174,10 +197,10 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     android:layout_marginLeft="15dp"
                     tools:ignore="TouchTargetSizeCheck"
-
+                    style="?android:attr/borderlessButtonStyle"
                     />
             </LinearLayout>
 
@@ -201,9 +224,9 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     tools:ignore="TouchTargetSizeCheck"
-
+                    style="?android:attr/borderlessButtonStyle"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -219,9 +242,10 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     android:layout_marginLeft="15dp"
                     tools:ignore="TouchTargetSizeCheck"
+                    style="?android:attr/borderlessButtonStyle"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -237,9 +261,10 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     android:layout_marginLeft="15dp"
-                    tools:ignore="TouchTargetSizeCheck"/>
+                    tools:ignore="TouchTargetSizeCheck"
+                    style="?android:attr/borderlessButtonStyle"/>
             </LinearLayout>
 
             <LinearLayout
@@ -263,8 +288,9 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     tools:ignore="TouchTargetSizeCheck"
+                    style="?android:attr/borderlessButtonStyle"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -280,10 +306,10 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     android:layout_marginLeft="15dp"
                     tools:ignore="TouchTargetSizeCheck"
-
+                    style="?android:attr/borderlessButtonStyle"
                     />
             </LinearLayout>
 
@@ -308,8 +334,9 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     tools:ignore="TouchTargetSizeCheck"
+                    style="?android:attr/borderlessButtonStyle"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -325,9 +352,10 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     android:layout_marginLeft="15dp"
                     tools:ignore="TouchTargetSizeCheck"
+                    style="?android:attr/borderlessButtonStyle"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -335,7 +363,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_marginLeft="15dp"
-                    android:background="@drawable/tagbtn"
+                    android:background="@drawable/tag_btn_state"
                     android:paddingLeft="14dp"
                     android:paddingTop="5dp"
                     android:paddingRight="14dp"
@@ -345,7 +373,8 @@
                     android:textColor="@color/black"
                     android:textSize="11dp"
                     android:textStyle="normal"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck"
+                    style="?android:attr/borderlessButtonStyle"/>
             </LinearLayout>
 
 
