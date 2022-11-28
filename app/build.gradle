@@ -28,8 +28,9 @@ android {
     }
     namespace 'com.example.eatssu'
 }
-    buildFeatures {
-        viewBinding true
+android {
+    viewBinding {
+        enabled = true
     }
 }
 

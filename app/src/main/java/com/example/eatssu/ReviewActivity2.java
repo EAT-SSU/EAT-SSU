@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 public class ReviewActivity2 extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,17 @@ public class ReviewActivity2 extends AppCompatActivity {
         Button btnTag8 =  findViewById(R.id.choose8);
         Button btnTag9 =  findViewById(R.id.choose9);
         Button btnTag10 =  findViewById(R.id.choose10);
+        RatingBar ratingBar = findViewById(R.id.ratingBar);
+        TextView countstar = findViewById(R.id.countstar);
+
+        countstar.setText("0");
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                countstar.setText((int)rating+"");
+            }
+        });
 
 
         buttonNext.setOnClickListener(new View.OnClickListener(){
@@ -34,8 +48,6 @@ public class ReviewActivity2 extends AppCompatActivity {
                 Intent intent = new Intent(ReviewActivity2.this,ReviewActivity3.class);
                 startActivity(intent);
             }
-
-
         }
         );
 

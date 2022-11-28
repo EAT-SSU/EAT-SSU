@@ -49,7 +49,7 @@
         app:layout_constraintLeft_toRightOf="@id/menu" />
 
     <TextView
-        android:id="@+id/conuntstar"
+        android:id="@+id/countstar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
@@ -63,70 +63,19 @@
         app:layout_constraintTop_toBottomOf="@id/menu"
         android:layout_marginTop="45dp"/>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:id="@+id/starRateArray"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/conuntstar">-->
-<!--        <ImageView-->
-<!--            android:id="@+id/ratestar1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_baseline_star_border_24"-->
-<!--            app:layout_constraintRight_toLeftOf="@id/ratestar2"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
-<!--            />-->
-<!--        <ImageView-->
-<!--            android:id="@+id/ratestar2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_baseline_star_border_24"-->
-<!--            app:layout_constraintRight_toLeftOf="@id/ratestar3"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
-<!--            />-->
-<!--        <ImageView-->
-<!--            android:id="@+id/ratestar3"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_baseline_star_border_24"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
-<!--            />-->
-<!--        <ImageView-->
-<!--            android:id="@+id/ratestar4"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_baseline_star_border_24"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/ratestar3"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
-<!--            />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/ratestar5"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_baseline_star_border_24"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/ratestar4"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/conuntstar"-->
-<!--            />-->
-
-<!--    </LinearLayout>-->
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:isIndicator="false"
         android:progressTint="@color/main"
         android:numStars="5"
-        android:rating="5"
+        android:rating="0"
         android:stepSize="1"
         style="@style/Widget.AppCompat.RatingBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/conuntstar"
+        app:layout_constraintTop_toBottomOf="@id/countstar"
         android:id="@+id/ratingBar"
         />
 
