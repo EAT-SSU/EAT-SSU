@@ -74,9 +74,9 @@ public class WriteBoardFragment extends Fragment {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle result = new Bundle();
-                result.putString("bundleKey", "from the 2nd fragment");
-                getParentFragmentManager().setFragmentResult("requestKey", result);
+//                Bundle result = new Bundle();
+//                result.putString("bundleKey", "from the 2nd fragment");
+//                getParentFragmentManager().setFragmentResult("requestKey", result);
 
                 getParentFragmentManager().beginTransaction().remove(WriteBoardFragment.this).commit();
             }

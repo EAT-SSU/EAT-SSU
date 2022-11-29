@@ -43,7 +43,7 @@ public class BoardFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    //private TextView textView;
+    private TextView textView;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -74,9 +74,9 @@ public class BoardFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 // We use a String here, but any type that can be put in a Bundle is supported
-                String resultString = result.getString("bundleKey");
+                //String resultString = result.getString("bundleKey");
                 // Do something with the result...
-                //textView.setText(resultString);
+                textView.setText(null);
             }
         });
     }
@@ -88,7 +88,7 @@ public class BoardFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_board, container, false);
 
-        initData(view);
+        //initData(view);
 
         return view;
     }
@@ -106,7 +106,7 @@ public class BoardFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().add(R.id.main_container_fragment, WriteBoardFragment.newInstance("param1", "param2")).addToBackStack(null).commit();
             }
         });
-    }
+    }/*
 
     public void initData(View view){
         recyclerView=view.findViewById(R.id.RV);
@@ -139,8 +139,6 @@ public class BoardFragment extends Fragment {
         adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-    }
+*/
+        //getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 }
