@@ -113,6 +113,7 @@ public class BoardFragment extends Fragment {
         arrayList = new ArrayList<>();
 
         /*
+        //여기서부터 파이어베이스
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("Board");//DB 테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -133,7 +134,10 @@ public class BoardFragment extends Fragment {
                 Log.e("BoardFragment","시발");//에러문 출력
                 //안해도 됨
             }
-        });*/
+        });
+        //파이어베이스
+        */
+
         arrayList = Board.createContactsList(7);
         adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView.setAdapter(adapter);
