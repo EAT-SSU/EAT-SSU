@@ -37,28 +37,32 @@ public class SignUpActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.btn_summit:
-                    signUp();
-                    break;
+            if (v.getId() == R.id.btn_summit) {
+                signUp();
             }
         }
     };
 
 
     private void signUp(){
-        String email=((EditText)findViewById(R.id.et_EmailAddress)).getText().toString();
-        String password=((EditText)findViewById(R.id.et_EmailAddress)).getText().toString();
-        String passwordCheck=((EditText)findViewById(R.id.et_EmailAddress)).getText().toString();
+        String email=((EditText)findViewById(R.id.edt_sEmailAddress)).getText().toString().trim();
+        String password=((EditText)findViewById(R.id.et_Password)).getText().toString().trim();
+        String passwordCheck=((EditText)findViewById(R.id.edt_Password2)).getText().toString().trim();
 
         if(email.length()>0 && password.length()>0 && passwordCheck.length()>0){
-            if(password.equals(passwordCheck)){
+            if(password.equals(passwordCheck)){//비밀번호 체크
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(SignUpActivity.this, "회원가입에 성공했습니다." ,Toast.LENGTH_SHORT).show();
+
+                                    //가입이 이루어져을시 가입 화면을 빠져나감.
+                                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    //finish();
+                                    //Toast.makeText(SignUpActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                                 } else {
                                     if(task.getException().toString() !=null){
                                         Toast.makeText(SignUpActivity.this, "회원가입에 실패했습니다." ,Toast.LENGTH_SHORT).show();
