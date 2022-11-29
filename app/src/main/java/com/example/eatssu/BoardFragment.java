@@ -51,6 +51,7 @@ public class BoardFragment extends Fragment {
     private ArrayList<Board> arrayList = new ArrayList<>();
 
 
+
     public BoardFragment() {}
 
     public static BoardFragment newInstance(String param1, String param2) {
@@ -88,15 +89,13 @@ public class BoardFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_board, container, false);
 
-        //initData(view);
-
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        initData(view);
         //글쓰러 가자
         Button goWritebutton = view.findViewById(R.id.btn_goWrite);
         goWritebutton.setOnClickListener(new View.OnClickListener() {
@@ -106,13 +105,14 @@ public class BoardFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().add(R.id.main_container_fragment, WriteBoardFragment.newInstance("param1", "param2")).addToBackStack(null).commit();
             }
         });
-    }/*
+    }
 
-    public void initData(View view){
-        recyclerView=view.findViewById(R.id.RV);
+    public void initData(View view) {
+        recyclerView = view.findViewById(R.id.RV);
         recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
         arrayList = new ArrayList<>();
 
+        /*
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("Board");//DB 테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -120,25 +120,25 @@ public class BoardFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear(); //기존 배열리스트가 존재하지 않게 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Board board = snapshot.getValue(Board.class); //만들어뒀던 Board 객체에 데이터를 담는다.
                     arrayList.add(board); //실제로 추가가 됨. 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
                 adapter.notifyDataSetChanged(); //리스트 저장 및 새로 고침
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //디비를 가져오던 중 에러 발생시
-                //Log.e("BoardFragment",String.valueOf(databaseError.toException()));//에러문 출력
+                Log.e("BoardFragment","시발");//에러문 출력
                 //안해도 됨
             }
-        });
+        });*/
         arrayList = Board.createContactsList(7);
         adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-*/
+
         //getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
 }
