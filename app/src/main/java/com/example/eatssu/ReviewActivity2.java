@@ -29,6 +29,7 @@ public class ReviewActivity2 extends AppCompatActivity {
         Button btnTag8 =  findViewById(R.id.choose8);
         Button btnTag9 =  findViewById(R.id.choose9);
         Button btnTag10 =  findViewById(R.id.choose10);
+
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         TextView countstar = findViewById(R.id.countstar);
 
