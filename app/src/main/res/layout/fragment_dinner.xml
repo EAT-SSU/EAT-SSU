@@ -86,6 +86,7 @@
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/haksik_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -166,6 +167,7 @@
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/dodam_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#00000000"
@@ -245,6 +247,7 @@
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/gisik_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#00000000"

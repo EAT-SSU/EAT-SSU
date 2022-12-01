@@ -13,44 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="5">
 
-            <Button
-                android:id="@+id/breakfast_btn_frag"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00000000"
-                android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
-                android:tint="@color/main"
-                app:itemIconSize="40dp"></Button>
-
-            <Button
-                android:id="@+id/breakfast_btn_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="3"
-                android:background="#00000000"
-                android:text="2022-10-18(화)"
-                android:textColor="@color/main"
-                android:textSize="18dp"
-                android:textStyle="bold">
-
-            </Button>
-
-            <Button
-                android:id="@+id/breakfast_btn_frag2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00000000"
-                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"></Button>
-
-        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -87,6 +50,7 @@
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/haksik_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -132,7 +96,7 @@
                     </View>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv1_haksikdata_frag"
+                        android:id="@+id/rv_breakfast_haksik"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -167,6 +131,7 @@
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/dodam_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#00000000"
@@ -211,7 +176,7 @@
                     </View>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv1_dodamdata_frag"
+                        android:id="@+id/rv_breakfast_dodam"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -239,13 +204,14 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_weight="5"
-                            android:text="기숙사식당"
+                            android:text="기숙사 식당"
                             android:textSize="17dp"
                             android:textStyle="bold"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/gisik_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#00000000"
@@ -289,7 +255,7 @@
                     </View>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv1_gisikdata_frag"
+                        android:id="@+id/rv_breakfast_gisik"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"

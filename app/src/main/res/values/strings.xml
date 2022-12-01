@@ -11,4 +11,8 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="writeBtn">글 쓰기</string>
+    <string name="board">Board</string>
+    <string name="home">Home</string>
+    <string name="mypage">MyPage</string>
 </resources>

@@ -6,4 +6,287 @@
     android:layout_height="match_parent"
     tools:context=".ReviewActivity">
 
+    <TextView
+        android:id="@+id/tv_eat_ssu"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="EAT SSU"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@color/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="메뉴 명"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="총 리뷰 수"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/rate"
+        app:layout_constraintBottom_toTopOf="@id/rate"
+        android:layout_marginLeft="100dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12"
+        android:textColor="@color/main"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/review"
+        app:layout_constraintBottom_toBottomOf="@id/review"
+        android:paddingLeft="5dp"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.3"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:paddingBottom="10dp"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/star3"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="70dp"/>
+
+    <ImageView
+        android:id="@+id/star1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="150dp"/>
+
+    <ImageView
+        android:id="@+id/star2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star1"
+        android:layout_marginTop="150dp"
+        />
+
+    <ImageView
+        android:id="@+id/star3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star2"
+        android:layout_marginTop="150dp"
+        />
+
+    <ImageView
+        android:id="@+id/star4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star3"
+        android:layout_marginTop="150dp"
+        />
+
+    <ImageView
+        android:id="@+id/star5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_star_24"
+        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu"
+        app:layout_constraintStart_toEndOf="@id/star4"
+        android:layout_marginTop="150dp"
+        />
+
+    <TextView
+        android:id="@+id/rate5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5점"
+        android:textSize="10dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/review"
+        app:layout_constraintTop_toBottomOf="@id/review"
+        android:paddingTop="5dp"
+        android:layout_marginTop="5dp"
+         />
+
+    <ImageView
+        android:id="@+id/rate5bar"
+        android:layout_width="100dp"
+        android:layout_height="8dp"
+        android:background="@drawable/ratebar"
+        app:layout_constraintStart_toEndOf="@id/rate5"
+        app:layout_constraintBottom_toBottomOf="@id/rate5"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="2.5dp"
+         />
+
+    <TextView
+        android:id="@+id/rate4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4점"
+        android:textSize="10dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/rate5"
+        app:layout_constraintTop_toBottomOf="@id/rate5"
+        android:paddingTop="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/rate4bar"
+        android:layout_width="100dp"
+        android:layout_height="8dp"
+        android:background="@drawable/ratebar"
+        app:layout_constraintStart_toEndOf="@id/rate4"
+        app:layout_constraintBottom_toBottomOf="@id/rate4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="2.5dp"
+        />
+
+    <TextView
+        android:id="@+id/rate3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3점"
+        android:textSize="10dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/rate4"
+        app:layout_constraintTop_toBottomOf="@id/rate4"
+        android:paddingTop="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/rate3bar"
+        android:layout_width="100dp"
+        android:layout_height="8dp"
+        android:background="@drawable/ratebar"
+        app:layout_constraintStart_toEndOf="@id/rate3"
+        app:layout_constraintBottom_toBottomOf="@id/rate3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="2.5dp"
+        />
+
+    <TextView
+        android:id="@+id/rate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2점"
+        android:textSize="10dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/rate3"
+        app:layout_constraintTop_toBottomOf="@id/rate3"
+        android:paddingTop="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/rate2bar"
+        android:layout_width="100dp"
+        android:layout_height="8dp"
+        android:background="@drawable/ratebar"
+        app:layout_constraintStart_toEndOf="@id/rate2"
+        app:layout_constraintBottom_toBottomOf="@id/rate2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="2.5dp"
+        />
+
+    <TextView
+        android:id="@+id/rate1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1점"
+        android:textSize="10dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/rate2"
+        app:layout_constraintTop_toBottomOf="@id/rate2"
+        android:paddingTop="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/rate1bar"
+        android:layout_width="100dp"
+        android:layout_height="8dp"
+        android:background="@drawable/ratebar"
+        app:layout_constraintStart_toEndOf="@id/rate1"
+        app:layout_constraintBottom_toBottomOf="@id/rate1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="2.5dp"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/reviewGoButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="리뷰 남기러 가기"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:background="@drawable/reviewbtn"
+        app:layout_constraintTop_toBottomOf="@id/rate1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+       />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="385dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reviewGoButton"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+         <ListView
+             android:id="@+id/reviewListView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" />
+=
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

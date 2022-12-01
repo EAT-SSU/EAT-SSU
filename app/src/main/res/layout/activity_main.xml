@@ -22,47 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/calendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="5"
-            app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu">
-
-                <Button
-                    android:id="@+id/main_left_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#00000000"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
-                    android:tint="@color/main"
-                    app:itemIconSize="40dp"></Button>
-
-                <Button
-                    android:id="@+id/main_date_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_weight="3"
-                    android:background="#00000000"
-                    android:text="2022-10-18(화)"
-                    android:textColor="@color/main"
-                    android:textSize="18dp"
-                    android:textStyle="bold">
-
-                </Button>
-
-                <Button
-                    android:id="@+id/main_right_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#00000000"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"></Button>
-
-        </LinearLayout>
-
         <FrameLayout
             android:id="@+id/main_container_fragment"
             android:layout_width="0dp"
@@ -70,7 +29,7 @@
             app:layout_constraintBottom_toTopOf="@+id/nav_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/calendar" />
+            app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu" />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -82,7 +41,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottomnav"
             app:itemIconSize="40dp"
-            app:itemIconTint="@color/main"
-            app:labelVisibilityMode="unlabeled"/>
+            app:itemIconTint="@color/main"/>
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
