@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+    android:paddingTop="10dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/reviewBox">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/userlogo"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/userImage"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="userIDByNumber"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:id="@+id/userName"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/personalRate">
+
+                <RatingBar
+                    android:id="@id/personalRate"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="false"
+                    android:max="5"
+                    android:progressBackgroundTint="@color/main"
+                    android:progressTint="@color/main"
+                    android:rating="4"
+                    android:secondaryProgressTint="@color/main"
+                    android:stepSize="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/date"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_marginRight="30dp">
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2022"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/font_gray_2"
+                android:layout_gravity="bottom"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="년"
+                android:textStyle="bold"
+                android:textColor="@color/font_gray_2"
+                android:layout_gravity="bottom"/>
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="10dp"
+
+                android:textStyle="bold"
+                android:textColor="@color/font_gray_2"
+                android:layout_gravity="bottom"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                android:textSize="10dp"
+
+                android:textStyle="bold"
+                android:textColor="@color/font_gray_2"
+                android:layout_gravity="bottom"/>
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="10dp"
+
+                android:textStyle="bold"
+                android:textColor="@color/font_gray_2"
+                android:layout_gravity="bottom"/>\
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/font_gray_2"
+                android:layout_gravity="bottom"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/editText1"
+        android:background="@drawable/edittext_bg"
+        android:text="hihihihhi"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        />
+</LinearLayout>
