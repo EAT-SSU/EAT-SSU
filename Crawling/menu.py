@@ -43,8 +43,6 @@ db = firestore.client()
 #     print(u'{} => {}'.format(doc.id, doc.to_dict()))
 
 
-
-
 ser = Service("C:/Users/qldls0307/chromedriver.exe")
 # 크롬 드라이버 잡아주는 것
 op = webdriver.ChromeOptions()  # initial
@@ -65,78 +63,70 @@ container = []
 for i in items:
     container.append(i.text)
 
+date_container=[]
 
 # 요일 바꾸기 도전!
-for i in range(1,7): #1월~6토
-    #닫기 버튼
-    닫기 = s.find_element(
-        By.XPATH, '//*[@id="smenu1"]/div[3]/div')
-    닫기.click()
-    
-    week = s.find_element(
-        By.XPATH, '//*[@id="useDt{0}"]'.format(i))
-    # week= s.find_element(By.ID, "useDt{0}".format(i))
-    week.click()
-    
-    #도큐먼트 이름
-    day =soup.select('#viewDt')
+#for i in range(1,7): #1월~6토
+
+
+i=1    
+#닫기 버튼
+닫기 = s.find_element(
+    By.XPATH, '//*[@id="smenu1"]/div[3]/div')
+닫기.click()
+
+week = s.find_element(
+    By.XPATH, '//*[@id="useDt{0}"]'.format(i))
+# week= s.find_element(By.ID, "useDt{0}".format(i))
+week.click()
+
+#오늘의 식단 클릭
+오늘의식단 = s.find_element(
+    By.XPATH, '//*[@id="menuTop1"]')
+오늘의식단.click()
+
+#도큐먼트 이름을 날짜로 설정하기
+#도큐먼트 이름
+day =soup.select('#viewDt')
         #By.XPATH, '//*[@id="viewDt"]')
-    date=[]
-    for i in day:
-        date.append(i.text)
-    print(date)
+date_container=[]
+for i in day:
+    date_container.append(i.text)
+print(date_container)
 
-    #오늘의 식단 클릭
-    오늘의식단 = s.find_element(
-        By.XPATH, '//*[@id="menuTop1"]')
-    오늘의식단.click()
+Button = s.find_element(By.NAME, "rest")
+숭실도담식당 = s.find_element(
+    By.CSS_SELECTOR, "#smenu1 > div:nth-child(1) > div > div > select > option:nth-child(2)")#value2 도담
+Button.click()
+숭실도담식당.click()
 
-
-    Button = s.find_element(By.NAME, "rest")
-    숭실도담식당 = s.find_element(
-        By.CSS_SELECTOR, "#smenu1 > div:nth-child(1) > div > div > select > option:nth-child(2)")#value2 도담
-    Button.click()
-    숭실도담식당.click()
-
-    time.sleep(3)
-    html = s.page_source
-
-    
-    dd_container=[]
-    도담soup = BeautifulSoup(html, 'html.parser')
-    중식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
-    중식4=도담soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) > b")
-    석식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+time.sleep(3)
+html = s.page_source
 
 
-        #"#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
-        #'#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list>div')
-    # mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(1)
-    for i in 중식1:
-        dd_container.append(i.text)
-    for i in 중식4:
-        dd_container.append(i.text)
-    for i in 석식1:
-        dd_container.append(i.text)
-    for i in dd_container:
-        print(i)
-    # print(container)
-    time.sleep(3)  # 추후 명시적 대기로 바꾸어야 함
+dd_container=[]
+도담soup = BeautifulSoup(html, 'html.parser')
+중식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+중식4=도담soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) > b")
+석식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+
+# mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(1)
+for i in 중식1:
+    dd_container.append(i.text)
+for i in 중식4:
+    dd_container.append(i.text)
+for i in 석식1:
+    dd_container.append(i.text)
+for i in dd_container:
+    print(i)
+# print(container)
+time.sleep(3)  # 추후 명시적 대기로 바꾸어야 함
 
 
-    #형식
-    #식당 이름_아침0/점심1/저녁2_메뉴종류0~2
-    doc_ref = db.collection(u'menus').document(u'{0}'.format(date[0]))
-    doc_ref.set({
-        u'기숙사식당_0': "계란후라이",
-        u'기숙사식당_1': "카레",
-        u'기숙사식당_2': "짜장면",
-        u'도담_중식1': "{0}".format(dd_container[0]),
-        u'도담_중식4': "{0}".format(dd_container[1]),
-        u'도담_석식1': "{0}".format(dd_container[2]),
-        u'학생식당_1_0': "김치나베뚝배기",
-        u'학생식당_1_1': "김치참치덮밥",
-        u'학생식당_1_1': "오므라이스",
-
-    })
-    html = s.page_source
+도담_doc_ref = db.collection(u'menus').document(u'{0}'.format(date_container[0])).collection(u'숭실도담식당').document('도담메뉴')
+도담_doc_ref.set({
+    u'중식1': "{0}".format(dd_container[0]),
+    u'중식4': "{0}".format(dd_container[1]),
+    u'석식1': "{0}".format(dd_container[2]),
+})
+html = s.page_source
