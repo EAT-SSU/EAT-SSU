@@ -40,10 +40,10 @@ android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/personalRate">
+                android:id="@+id/personalRating">
 
                 <RatingBar
-                    android:id="@id/personalRate"
+                    android:id="@+id/personalRate"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,7 +51,7 @@ android:orientation="vertical"
                     android:max="5"
                     android:progressBackgroundTint="@color/main"
                     android:progressTint="@color/main"
-                    android:rating="4"
+                    android:rating="2"
                     android:secondaryProgressTint="@color/main"
                     android:stepSize="1" />
             </LinearLayout>
@@ -126,7 +126,7 @@ android:orientation="vertical"
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:id="@+id/editText1"
+        android:id="@+id/reviewContext"
         android:background="@drawable/edittext_bg"
         android:text="hihihihhi"
         android:padding="20dp"

@@ -29,22 +29,40 @@ public class ReviewActivity extends AppCompatActivity {
         });
 
         //=========================테스트를 위한 더미데이터 생성=====================
-        ArrayList<String> testDataSet = new ArrayList<>();
+        ArrayList<ReviewList> testDataSet = new ArrayList<>();
 
-        for(int i=0;i<20;i++){
-            testDataSet.add("Test Data" +i);
+        for(int i=0;i<10;i++){
+            testDataSet.add(new ReviewList("user", "이건 별로 맛이 없어요",(float) 3.0,2022,7,4));
+
+//            private String userId;
+//            private String reviewContext;
+//            private int starRate;
+//            private int year;
+//            private int month;
+//            private int day;
         }
 
         //===================================================================
         RecyclerView recyclerView = findViewById(R.id.reviewRecyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((Context) this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(linearLayoutManager); //LayoutManager 설정
 
         ReviewAdapter reviewAdapter = new ReviewAdapter(testDataSet);
         recyclerView.setAdapter(reviewAdapter);
 
+        //addItem("1234","맛잇다",(float)4.0,2022,3,15);
     }
+
+//    public void addItem(String userId, String reviewContext, float starRate, int year, int month, int day){
+//        ReviewList reviewItem = new ReviewList(userId,reviewContext,starRate,year,month,day);
+//        reviewItem.setUserId(userId);
+//        reviewItem.setReviewContext(reviewContext);
+//        reviewItem.setStarRate(starRate);
+//        reviewItem.setYear(year);
+//        reviewItem.setMonth(month);
+//        reviewItem.setDay(day);
+//    }
 
 
 }
