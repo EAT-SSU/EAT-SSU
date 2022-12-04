@@ -130,7 +130,9 @@ for i in hs_container:
 # print(container)
 time.sleep(3)  # 추후 명시적 대기로 바꾸어야 함
 
-학식_doc_ref = db.collection(u'menus').document(u'{0}'.format('2022.12.06(화)')).collection(u'학생식당').document('학생식당메뉴')
+menuname= 값
+
+학식_doc_ref = db.collection(u'menus').document(u'{0}'.format('2022.12.06')).collection(u'학생식당').document('학생식당메뉴')
 학식_doc_ref.set({
     u'중식1': "{0}".format(hs_container[0]),
 #    u'중식2_1': "{0}".format(hs_container[1]),

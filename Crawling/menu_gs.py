@@ -61,7 +61,7 @@ for i in 석식:
 for k in gs_container:
     print(k)
 
-기식_doc_ref = db.collection(u'menus').document(u'2022.12.04(일)').collection(u'기숙사식당').document('기숙사식당메뉴')
+기식_doc_ref = db.collection(u'menus').document(u'2022.12.04').collection(u'기숙사식당').document('기숙사식당메뉴')
 기식_doc_ref.set({
     u'조식': "{0}".format(gs_container[0]),
     u'중식': "{0}".format(gs_container[1]),
