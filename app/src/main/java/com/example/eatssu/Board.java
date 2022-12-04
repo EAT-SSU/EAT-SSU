@@ -4,25 +4,27 @@ package com.example.eatssu;
 
 import java.util.ArrayList;
 
-class Board {
+public class Board {
     private String title;
     private String content;
     private String id;
     private int likeCount;
     private int messageCount;
     //private int datetime;
-//alt insert
+    //alt insert 하면 게터 세터 한번에 굿!
 
     private Board(){}
 
+
     public Board(String title, String content,String id, int likeCount,int messageCount) {
+
         this.title = title;
         this.content = content;
         this.likeCount=likeCount;
         this.messageCount=messageCount;
         this.id=id;
     }
-
+/*
     public static ArrayList<Board> createContactsList(int numContacts) {
         ArrayList<Board> contacts = new ArrayList<Board>();
 
@@ -31,7 +33,7 @@ class Board {
         }
 
         return contacts;
-    }
+    }*/
 
     public String getTitle() {
         return title;

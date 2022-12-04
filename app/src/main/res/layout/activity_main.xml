@@ -34,14 +34,18 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_bottom"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+            app:labelVisibilityMode="selected"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottomnav"
-            app:itemIconSize="40dp"
-            app:itemIconTint="@color/main"/>
+            app:itemIconSize="30dp"
+            app:itemIconTint="@color/white"/>
+
+
 
 
 

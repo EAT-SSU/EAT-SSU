@@ -35,14 +35,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             super(view);
             // Define click listener for the ViewHolder's View
 
-/*
-            class Board {
-                private String title;
-                private String content;
-                private int id;
-                private int likeCount;
-                private int messageCount;
-                private int datetime;*/
             title = (TextView) view.findViewById(R.id.tv_title);
             content = (TextView) view.findViewById(R.id.tv_content);
             id = (TextView) view.findViewById(R.id.tv_id);
