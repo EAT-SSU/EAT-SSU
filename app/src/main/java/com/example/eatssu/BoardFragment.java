@@ -1,5 +1,9 @@
 package com.example.eatssu;
 
+import static android.content.ContentValues.TAG;
+
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,13 +23,30 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,14 +63,14 @@ public class BoardFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private FirebaseFirestore db;
     private TextView textView;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList = new ArrayList<>();
-
+    private ProgressDialog progressDialog;
 
 
     public BoardFragment() {}
@@ -89,9 +110,54 @@ public class BoardFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_board, container, false);
 
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Fetching data");
+        progressDialog.show();
+        ArrayList<Board> arraryList = new ArrayList<Board>();
+        //arrayList = Board.createContactsList(7);
+        adapter = new CustomAdapter(arrayList, getActivity());
+        recyclerView = view.findViewById(R.id.RV);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        db = FirebaseFirestore.getInstance();
+        //getAllDocumentsInACollection();
+        EventChangeListener();
+        //getADocument();
         return view;
     }
 
+
+    private void EventChangeListener() {
+        db.collection("Board").orderBy("id", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        else {
+                            for (DocumentChange dc : Objects.requireNonNull(value).getDocumentChanges()) {
+                                if (dc.getType() == DocumentChange.Type.ADDED) {
+                                    arrayList.add(dc.getDocument().toObject(Board.class));
+                                }
+                                adapter.notifyDataSetChanged();
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
+                            }
+                        }
+                    }
+                });
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -102,7 +168,8 @@ public class BoardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("Log", "Clicked");
-                getParentFragmentManager().beginTransaction().add(R.id.main_container_fragment, WriteBoardFragment.newInstance("param1", "param2")).addToBackStack(null).commit();
+                getParentFragmentManager().beginTransaction().add(R.id.main_container_fragment, new WriteBoardFragment()).addToBackStack(null).commit();
+                //getParentFragmentManager().beginTransaction().add(R.id.main_container_fragment, WriteBoardFragment.newInstance("param1", "param2")).addToBackStack(null).commit();
             }
         });
     }
@@ -112,37 +179,6 @@ public class BoardFragment extends Fragment {
         recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
         arrayList = new ArrayList<>();
 
-        /*
-        //여기서부터 파이어베이스
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("Board");//DB 테이블 연결
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는 곳
-                arrayList.clear(); //기존 배열리스트가 존재하지 않게 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Board board = snapshot.getValue(Board.class); //만들어뒀던 Board 객체에 데이터를 담는다.
-                    arrayList.add(board); //실제로 추가가 됨. 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
-                }
-                adapter.notifyDataSetChanged(); //리스트 저장 및 새로 고침
-            }
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //디비를 가져오던 중 에러 발생시
-                Log.e("BoardFragment","시발");//에러문 출력
-                //안해도 됨
-            }
-        });
-        //파이어베이스
-        */
-
-        arrayList = Board.createContactsList(7);
-        adapter = new CustomAdapter(arrayList, getActivity());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        //getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
 }
