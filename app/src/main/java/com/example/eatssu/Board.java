@@ -7,7 +7,7 @@ import java.util.ArrayList;
 class Board {
     private String title;
     private String content;
-    private int id;
+    private String id;
     private int likeCount;
     private int messageCount;
     //private int datetime;
@@ -15,7 +15,7 @@ class Board {
 
     private Board(){}
 
-    public Board(String title, String content,int id, int likeCount,int messageCount) {
+    public Board(String title, String content,String id, int likeCount,int messageCount) {
         this.title = title;
         this.content = content;
         this.likeCount=likeCount;
@@ -27,7 +27,7 @@ class Board {
         ArrayList<Board> contacts = new ArrayList<Board>();
 
         for (int i = 1; i <= numContacts; i++) {
-            contacts.add(new Board("오늘은 ", "배고파요",1799,2,3));
+            contacts.add(new Board("오늘은 ", "배고파요","1799",2,3));
         }
 
         return contacts;
@@ -49,11 +49,11 @@ class Board {
         this.content = content;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

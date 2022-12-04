@@ -67,11 +67,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             return likeCount;
         }
 
-        /*
+
         public TextView getMessageCount() {
             return messageCount;
         }
-
+/*
         public TextView getDatetime() {
             return datetime;
         }*/
@@ -96,7 +96,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         /*Glide.with(viewHolder.itemView)
                 .load(arrayList.get(position).getImage())
                 .into(viewHolder.image);*/
-        viewHolder.id.setText(String.valueOf(arrayList.get(position).getId()));
+        viewHolder.id.setText((arrayList.get(position).getId()));
         viewHolder.title.setText(arrayList.get(position).getTitle());
         viewHolder.content.setText(arrayList.get(position).getContent());
         viewHolder.messageCount.setText(String.valueOf(arrayList.get(position).getMessageCount()));

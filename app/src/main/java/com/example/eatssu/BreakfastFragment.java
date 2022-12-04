@@ -77,50 +77,50 @@ public class BreakfastFragment extends Fragment {
             }
         });
 
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Fetching data");
-        progressDialog.show();
-        ArrayList<Menu> arraryList = new ArrayList<Menu>();
-        rvAdapter = new MenuAdapter(arrayList, getActivity());
-        recyclerView = view.findViewById(R.id.rv_breakfast_haksik);
-        recyclerView2 = view.findViewById(R.id.rv_breakfast_dodam);
-        recyclerView3 = view.findViewById(R.id.rv_breakfast_gisik);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(rvAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        progressDialog = new ProgressDialog(getActivity());
+//        progressDialog.setCancelable(false);
+//        progressDialog.setMessage("Fetching data");
+//        progressDialog.show();
+//        ArrayList<Menu> arraryList = new ArrayList<Menu>();
+//        rvAdapter = new MenuAdapter(arrayList, getActivity());
+//        recyclerView = view.findViewById(R.id.rv_breakfast_haksik);
+//        recyclerView2 = view.findViewById(R.id.rv_breakfast_dodam);
+//        recyclerView3 = view.findViewById(R.id.rv_breakfast_gisik);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setAdapter(rvAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         db = FirebaseFirestore.getInstance();
-        EventChangeListener();
+        //EventChangeListener();
 
         return view;
     }
 
-    private void EventChangeListener() {
-        db.collection("menus").orderBy("2022.12.03(토)", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null) {
-                            if(progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-                            Log.e("Firestore error", error.getMessage());
-                            return;
-                        }
-                        for (DocumentChange dc : value.getDocumentChanges()) {
-                            if(dc.getType() == DocumentChange.Type.ADDED) {
-                                arrayList.add(dc.getDocument().toObject(Menu.class));
-                            }
-                            rvAdapter.notifyDataSetChanged();
-                            if(progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-                        }
-                    }
-                });
-    }
+//    private void EventChangeListener() {
+//        db.collection("menus").orderBy("2022.12.03(토)", Query.Direction.ASCENDING)
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//                        if(error != null) {
+//                            if(progressDialog.isShowing()) {
+//                                progressDialog.dismiss();
+//                            }
+//                            Log.e("Firestore error", error.getMessage());
+//                            return;
+//                        }
+//                        for (DocumentChange dc : value.getDocumentChanges()) {
+//                            if(dc.getType() == DocumentChange.Type.ADDED) {
+//                                arrayList.add(dc.getDocument().toObject(Menu.class));
+//                            }
+//                            rvAdapter.notifyDataSetChanged();
+//                            if(progressDialog.isShowing()) {
+//                                progressDialog.dismiss();
+//                            }
+//                        }
+//                    }
+//                });
+//    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
