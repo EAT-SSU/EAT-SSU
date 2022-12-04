@@ -22,18 +22,16 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         private final TextView userId;
         private final TextView reviewContext;
         private final RatingBar rating;
-        private final TextView year;
-        private final TextView month;
-        private final TextView day;
+        private final TextView date;
+
 
         public ViewHolder(@NonNull View view) {
             super(view);
             userId = view.findViewById(R.id.userName);
             reviewContext = view.findViewById(R.id.reviewContext);
             rating = view.findViewById(R.id.personalRate);
-            year = view.findViewById(R.id.year);
-            month = view.findViewById(R.id.month);
-            day = view.findViewById(R.id.day);
+            date = view.findViewById(R.id.date);
+
 
         }
     }
@@ -64,9 +62,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.userId.setText(item.getUserId());
         holder.rating.setRating(item.getRating());
         holder.reviewContext.setText(item.getReviewContext());
-        holder.year.setText(String.valueOf(item.getYear()));
-        holder.month.setText(String.valueOf(item.getMonth()));
-        holder.day.setText(String.valueOf(item.getDay()));
+        holder.date.setText(String.valueOf(item.getDate()));
+
 
     }
 

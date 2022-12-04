@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,7 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ReviewActivity2 extends AppCompatActivity {
-
+    float sendRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class ReviewActivity2 extends AppCompatActivity {
         Button btnTag9 =  findViewById(R.id.choose9);
         Button btnTag10 =  findViewById(R.id.choose10);
 
+
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         TextView countstar = findViewById(R.id.countstar);
 
@@ -38,21 +40,23 @@ public class ReviewActivity2 extends AppCompatActivity {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                countstar.setText((int)rating+"");
-            }
-        });
 
+                countstar.setText((int)rating+"");
+                sendRating=ratingBar.getRating();
+
+            }
+
+        });
 
         buttonNext.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(ReviewActivity2.this,ReviewActivity3.class);
+                intent.putExtra("rating", sendRating);
                 startActivity(intent);
             }
         }
         );
-
-
 
       btnTag1.setOnClickListener(new View.OnClickListener() {
           boolean isBtn1Selected= false;
