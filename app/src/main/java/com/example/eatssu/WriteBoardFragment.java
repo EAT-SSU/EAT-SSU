@@ -1,15 +1,28 @@
 package com.example.eatssu;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +75,8 @@ public class WriteBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_write_board, container, false);
     }
 
@@ -77,6 +92,10 @@ public class WriteBoardFragment extends Fragment {
 //                Bundle result = new Bundle();
 //                result.putString("bundleKey", "from the 2nd fragment");
 //                getParentFragmentManager().setFragmentResult("requestKey", result);
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = database.getReference("title");
+                databaseReference.setValue("이거슨 제목");
 
                 getParentFragmentManager().beginTransaction().remove(WriteBoardFragment.this).commit();
             }
