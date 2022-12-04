@@ -13,44 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="5">
 
-            <Button
-                android:id="@+id/breakfast_btn_frag"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00000000"
-                android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
-                android:tint="@color/main"
-                app:itemIconSize="40dp"></Button>
-
-            <Button
-                android:id="@+id/breakfast_btn_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_weight="3"
-                android:background="#00000000"
-                android:text="2022-10-18(화)"
-                android:textColor="@color/main"
-                android:textSize="26dp"
-                android:textStyle="bold">
-
-            </Button>
-
-            <Button
-                android:id="@+id/breakfast_btn_frag2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00000000"
-                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"></Button>
-
-        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -62,131 +25,61 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/breakfast_tv_haksik"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="학생식당"
-                    android:textSize="17dp"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/main" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:src="@drawable/ic_baseline_location_on_24"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:scaleType="center"
-                    ></ImageButton>
-
-                <TextView
-                    android:id="@+id/item_tv_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="price"
-                    android:layout_marginLeft="180dp"
-                    android:textColor="@color/main"
-                    android:layout_marginTop="7dp"
-                    android:textSize="15dp"
-                    ></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="rate"
-                    android:layout_marginLeft="40dp"
-                    android:textColor="@color/main"
-                    android:layout_marginTop="7dp"
-                    android:textSize="15dp"
-                    ></TextView>
-
-            </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/main" >
-
-                </View>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_data_frag"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" >
-
-            </androidx.recyclerview.widget.RecyclerView>
-            </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="10dp">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="10">
 
                         <TextView
-                            android:id="@+id/breakfast_tv_dodam"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/breakfast_tv_haksik"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
-                            android:text="도담식당"
+                            android:layout_weight="5"
+                            android:text="학생식당"
                             android:textSize="17dp"
                             android:textStyle="bold"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/haksik_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:background="#00000000"
                             android:src="@drawable/ic_baseline_location_on_24"
                             android:layout_marginTop="9dp"
                             android:layout_marginLeft="5dp"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:scaleType="center"
                             ></ImageButton>
 
                         <TextView
-                            android:id="@+id/item_tv_dodamprice"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/item_tv_price"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="2"
                             android:text="price"
-                            android:layout_marginLeft="180dp"
                             android:textColor="@color/main"
+                            android:layout_marginLeft="120dp"
                             android:layout_marginTop="7dp"
                             android:textSize="15dp"
                             ></TextView>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="rate"
-                            android:layout_marginLeft="40dp"
+                            android:layout_weight="2"
+                            android:layout_marginLeft="20dp"
                             android:textColor="@color/main"
                             android:layout_marginTop="7dp"
                             android:textSize="15dp"
@@ -203,7 +96,7 @@
                     </View>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_dodamdata_frag"
+                        android:id="@+id/rv_breakfast_haksik"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -222,21 +115,23 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="10">
 
                         <TextView
-                            android:id="@+id/breakfast_tv_gisik"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
-                            android:text="기숙사식당"
+                            android:layout_weight="5"
+                            android:text="도담식당"
                             android:textSize="17dp"
                             android:textStyle="bold"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/main" />
 
                         <ImageButton
+                            android:id="@+id/dodam_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#00000000"
@@ -248,21 +143,23 @@
                             ></ImageButton>
 
                         <TextView
-                            android:id="@+id/item_tv_gisikprice"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/item_tv_dodamprice"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="2"
                             android:text="price"
-                            android:layout_marginLeft="165dp"
                             android:textColor="@color/main"
+                            android:layout_marginLeft="120dp"
                             android:layout_marginTop="7dp"
                             android:textSize="15dp"
                             ></TextView>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="rate"
-                            android:layout_marginLeft="40dp"
+                            android:layout_weight="2"
+                            android:layout_marginLeft="20dp"
                             android:textColor="@color/main"
                             android:layout_marginTop="7dp"
                             android:textSize="15dp"
@@ -279,7 +176,86 @@
                     </View>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_gisikdata_frag"
+                        android:id="@+id/rv_breakfast_dodam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent" >
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="5"
+                            android:text="기숙사 식당"
+                            android:textSize="17dp"
+                            android:textStyle="bold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/main" />
+
+                        <ImageButton
+                            android:id="@+id/gisik_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:scaleType="center"
+                            ></ImageButton>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="price"
+                            android:textColor="@color/main"
+                            android:layout_marginLeft="120dp"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="rate"
+                            android:layout_weight="2"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/main"
+                            android:layout_marginTop="7dp"
+                            android:textSize="15dp"
+                            ></TextView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/main" >
+
+                    </View>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_breakfast_gisik"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
