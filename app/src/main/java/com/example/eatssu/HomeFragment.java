@@ -42,6 +42,8 @@ public class HomeFragment extends Fragment {
         viewPager2.setAdapter(adapter);
         dateBtn = view.findViewById(R.id.main_date_btn);
 
+
+        viewPager2.setSaveEnabled(false);
         final List<String> tabElement = Arrays.asList("아침", "점심", "저녁");
 
 

@@ -92,7 +92,8 @@ public class BoardFragment extends Fragment {
 
     //FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public BoardFragment() {}
+    public BoardFragment() {
+    }
 
     public static BoardFragment newInstance(String param1, String param2) {
         BoardFragment fragment = new BoardFragment();
@@ -196,14 +197,13 @@ public class BoardFragment extends Fragment {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null) {
-                            if(progressDialog.isShowing()) {
+                        if (error != null) {
+                            if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
                             Log.e("Firestore error", error.getMessage());
                             return;
-                        }
-                        else {
+                        } else {
                             for (DocumentChange dc : Objects.requireNonNull(value).getDocumentChanges()) {
                                 if (dc.getType() == DocumentChange.Type.ADDED) {
                                     arrayList.add(dc.getDocument().toObject(Board.class));
@@ -217,10 +217,10 @@ public class BoardFragment extends Fragment {
                     }
                 });
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //initData(view);
         //글쓰러 가자
         Button goWritebutton = view.findViewById(R.id.btn_goWrite);
         goWritebutton.setOnClickListener(new View.OnClickListener() {
@@ -234,9 +234,4 @@ public class BoardFragment extends Fragment {
         });
 
     }
-
-    public void initData(View view) {
-
-        }
-
 }
