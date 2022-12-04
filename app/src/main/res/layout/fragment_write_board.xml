@@ -43,15 +43,54 @@
             android:layout_height="wrap_content"
             android:hint="제목을 입력하세요." />
 
-
-        <EditText
-            android:id="@+id/et_content"
-            android:padding="16dp"
+        <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="내용을 입력하세요." />
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/et_content"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="내용을 입력하세요."
+                />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+
+        >
+        <TextView
+            android:id="@+id/data_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:hint="ID번호"
+            android:gravity="center"></TextView>
+        <TextView
+            android:id="@+id/write_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:hint="좋아요"
+            android:gravity="center"></TextView>
+
+        <TextView
+            android:id="@+id/message_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:hint="댓글"
+            android:gravity="center"></TextView>
+        </LinearLayout>
+
+        </LinearLayout>
 
 
-
-
-</LinearLayout>
+    </LinearLayout>
