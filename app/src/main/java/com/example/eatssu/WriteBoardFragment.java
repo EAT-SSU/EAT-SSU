@@ -43,8 +43,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class WriteBoardFragment extends Fragment {
 
     private  FirebaseAuth auth;
@@ -109,7 +107,6 @@ public class WriteBoardFragment extends Fragment {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Map<String, Object> data1 = new HashMap<>();
                 puttitle = title.getText().toString();
                 putcontent = content.getText().toString();
@@ -123,7 +120,8 @@ public class WriteBoardFragment extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener() {
                             @Override
                             public void onSuccess(Object o) {
-                                Log.d(TAG, "DocumentSnapshot added with ID: " + docRef.getId());
+                                Log.d(TAG, "DocumentSnapshot added with title: " + puttitle);
+                                //Log.d(TAG, "DocumentSnapshot added with ID: ");
                             }
 
                         })
@@ -133,11 +131,17 @@ public class WriteBoardFragment extends Fragment {
                                 Log.w(TAG, "Error adding document", e);
 
                             }
+
+
                         });
+                //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                //getParentFragmentManager().beginTransaction().remove(WriteBoardFragment.this).commit();
+                //getParentFragmentManager().popBackStack();
 
+
+                getParentFragmentManager().beginTransaction().remove(WriteBoardFragment.this).commit();
                 //getParentFragmentManager().beginTransaction().replace(R.id.main_container_fragment, BoardFragment).commit();
-                getParentFragmentManager().beginTransaction().replace(R.id.main_container_fragment, BoardFragment).commitAllowingStateLoss();
-
+//                getParentFragmentManager().beginTransaction().replace(R.id.main_container_fragment, BoardFragment).commitAllowingStateLoss();
             }
         });
     }

@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -167,14 +168,19 @@ public class BoardFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Fetching data");
         progressDialog.show();
-        ArrayList<Board> arraryList = new ArrayList<Board>();
+        //ArrayList<Board> arraryList = new ArrayList<Board>();
         //arrayList = Board.createContactsList(7);
         adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView = view.findViewById(R.id.RV);
+        recyclerView.setItemViewCacheSize(adapter.getItemCount());
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
 
         db = FirebaseFirestore.getInstance();
         //getAllDocumentsInACollection();

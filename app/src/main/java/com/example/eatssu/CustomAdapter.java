@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder>{
-//public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private ArrayList<Board> arrayList;
     private Context context;
@@ -22,7 +22,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         this.arrayList = arrayList;
         this.context = context;
     }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView title;
         private final TextView content;
@@ -32,18 +31,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         //private final TextView datetime;
         //private final ImageView image;
 
-        public CustomViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
 
-
-            class Board {
-                private String title;
-                private String content;
-                private int id;
-                private int likeCount;
-                private int messageCount;
-                private int datetime;
             title = (TextView) view.findViewById(R.id.tv_title);
             content = (TextView) view.findViewById(R.id.tv_content);
             id = (TextView) view.findViewById(R.id.tv_id);
@@ -72,12 +63,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         public TextView getMessageCount() {
             return messageCount;
         }
-
 /*
-
         public TextView getDatetime() {
             return datetime;
-        }
+        }*/
     }
 
     public CustomAdapter(){} //생성자
@@ -93,23 +82,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         return holder;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull CustomAdapter.CustomAdapter holder, int position) {
-
-    }
-
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         /*Glide.with(viewHolder.itemView)
                 .load(arrayList.get(position).getImage())
-
-
                 .into(viewHolder.image);*/
         viewHolder.id.setText((arrayList.get(position).getId()));
         viewHolder.title.setText(arrayList.get(position).getTitle());
@@ -126,4 +103,4 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         //삼항연산자
         return (arrayList !=null? arrayList.size():0);
     }
-}*/
+}
