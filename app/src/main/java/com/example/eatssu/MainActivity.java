@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment_home;
     Fragment fragment_board;
     Fragment fragment_mypage;
+    String uid;
 
 
     @Override
@@ -36,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         fragment_board = new BoardFragment();
         fragment_mypage = new MypageFragment();
 
-
+        Intent intent=getIntent();
+        uid = intent.getStringExtra("uid");
+        Log.d("main-uid",uid);
 
         NavigationBarView navigationBarView= findViewById(R.id.nav_bottom);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container_fragment, fragment_home).commitAllowingStateLoss();
