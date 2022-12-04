@@ -68,7 +68,7 @@ date_container=[]
 #for i in range(1,7): #1월~6토
 
 
-i=1    
+i=5
 #닫기 버튼
 닫기 = s.find_element(
     By.XPATH, '//*[@id="smenu1"]/div[3]/div')
@@ -101,14 +101,16 @@ Button.click()
 
 time.sleep(3)
 html = s.page_source
-
+ 
 
 dd_container=[]
 도담soup = BeautifulSoup(html, 'html.parser')
-중식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
-중식4=도담soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) > b")
-석식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
-
+중식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
+##mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+중식4=도담soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
+##mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+석식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
+##mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
 # mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(1)
 for i in 중식1:
     dd_container.append(i.text)
@@ -120,9 +122,9 @@ for i in dd_container:
     print(i)
 # print(container)
 time.sleep(3)  # 추후 명시적 대기로 바꾸어야 함
+#'{0}'.format(date_container[0])
 
-
-도담_doc_ref = db.collection(u'menus').document(u'{0}'.format(date_container[0])).collection(u'숭실도담식당').document('도담메뉴')
+도담_doc_ref = db.collection(u'menus').document(u'2022.12.09(금)').collection(u'숭실도담식당').document('도담메뉴')
 도담_doc_ref.set({
     u'중식1': "{0}".format(dd_container[0]),
     u'중식4': "{0}".format(dd_container[1]),

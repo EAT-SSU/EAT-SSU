@@ -66,7 +66,7 @@ date_container=[]
 #for i in range(1,7): #1월~6토
 
 
-i=1
+i=2
 #닫기 버튼
 닫기 = s.find_element(
     By.XPATH, '//*[@id="smenu1"]/div[3]/div')
@@ -92,7 +92,7 @@ print(date)
 
 Button = s.find_element(By.NAME, "rest")    
 학생식당= s.find_element(
-    By.CSS_SELECTOR, "#smenu1 > div:nth-child(1) > div > div > select > option:nth-child(1)")#value1 도담
+    By.CSS_SELECTOR, "#smenu1 > div:nth-child(1) > div > div > select > option:nth-child(1)")#value1 학식
 Button.click()
 학생식당.click()
 
@@ -103,7 +103,7 @@ html = s.page_source
 
 hs_container=[]
 학식soup = BeautifulSoup(html, 'html.parser')
-중식1=학식soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(10) > span > b")
+중식1=학식soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(9)")
     #"#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
 중식2_1=학식soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(5)")
 중식2_2=학식soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(7)")
@@ -130,12 +130,12 @@ for i in hs_container:
 # print(container)
 time.sleep(3)  # 추후 명시적 대기로 바꾸어야 함
 
-학식_doc_ref = db.collection(u'menus').document(u'{0}'.format(date[0])).collection(u'학생식당').document('학생식당메뉴')
+학식_doc_ref = db.collection(u'menus').document(u'{0}'.format('2022.12.06(화)')).collection(u'학생식당').document('학생식당메뉴')
 학식_doc_ref.set({
     u'중식1': "{0}".format(hs_container[0]),
-    u'중식2_1': "{0}".format(hs_container[1]),
-    u'중식2_2': "{0}".format(hs_container[2]),
-    u'중식2_3': "{0}".format(hs_container[3]),
-    u'중식2_4': "{0}".format(hs_container[4]),
+#    u'중식2_1': "{0}".format(hs_container[1]),
+#    u'중식2_2': "{0}".format(hs_container[2]),
+#    u'중식2_3': "{0}".format(hs_container[3]),
+#    u'중식2_4': "{0}".format(hs_container[4]),
 })
 html = s.page_source
