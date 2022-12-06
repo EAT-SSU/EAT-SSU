@@ -14,6 +14,7 @@
             android:src="@drawable/userlogo"/>
 
         <TextView
+            android:id="@+id/tv_commenterId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID1514"
@@ -23,6 +24,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
     <TextView
+        android:id="@+id/tv_commenterComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
