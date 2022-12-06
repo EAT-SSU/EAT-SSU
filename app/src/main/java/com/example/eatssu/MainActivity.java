@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         uid = intent.getStringExtra("uid");
-        Log.d("main-uid",uid);
+        //Log.d("main-uid",uid);
 
         NavigationBarView navigationBarView= findViewById(R.id.nav_bottom);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container_fragment, fragment_home).commitAllowingStateLoss();

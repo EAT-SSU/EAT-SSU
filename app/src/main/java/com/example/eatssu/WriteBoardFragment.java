@@ -18,23 +18,28 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class WriteBoardFragment extends Fragment {
 
-    private  FirebaseAuth auth;
+    FirebaseAuth auth;
     private FirebaseFirestore db;
     private DocumentReference docRef;
-    final String userId = String.valueOf(getId());
+    //final String userId = String.valueOf(getId());
     private String puttitle;
     private String putcontent;
+    //private String timestamp;
     //docRef = db.collection("Board").document("id");
 
     Fragment BoardFragment;
@@ -73,9 +78,21 @@ public class WriteBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_write_board, container, false);
 
+    }
+    public static String getCurrentTimeStamp(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+            return currentDateTime;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 
     @Override
@@ -88,6 +105,19 @@ public class WriteBoardFragment extends Fragment {
         TextView id = view.findViewById(R.id.data_id);
         TextView likeCount = view.findViewById(R.id.write_id);
         TextView messageCount = view.findViewById(R.id.message_id);
+        //String uid=auth.getCurrentUser().getUid();
+//
+//        Long tsLong = System.currentTimeMillis()/1000;
+//        String ts = tsLong.toString();
+
+        //String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
+        String date=getCurrentTimeStamp();
+        auth = FirebaseAuth.getInstance();
+        String uid=auth.getCurrentUser().getUid();
+
+        String trimId=uid.substring(0,4);
+
+
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,9 +126,11 @@ public class WriteBoardFragment extends Fragment {
                 putcontent = content.getText().toString();
                 data1.put("title", puttitle);
                 data1.put("content", putcontent);
-                data1.put("id", "1");
-                data1.put("likeCount", 1);
-                data1.put("messageCount", 1);
+                data1.put("id", uid);
+                data1.put("trimUid",trimId);
+                data1.put("likeCount", 0);
+                data1.put("messageCount", 0);
+                data1.put("timestamp",date);
 //                db.document("id").set(data1);
                 db.collection("Board").add(data1)
                         .addOnSuccessListener(new OnSuccessListener() {
