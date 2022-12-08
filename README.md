@@ -3,7 +3,7 @@
 
 - 숭실대학교 컴퓨터학부 사용자인터페이스및실습 프로젝트
 - 개발 기간 : 2022.10-12 (개발 중)
-- 사용 스택 : `JAVA Android`  `Jsoup`  `Firebase` 
+- 사용 스택 : `JAVA Android`  `BeautifulSoup` `Selenium`  `Firebase` 
 - [스케쥴링 및 작업 분해](https://www.notion.so/EAT-SSU-3b0ed43070c44fa88304ed33f0341a04)
   
   
