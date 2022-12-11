@@ -27,23 +27,23 @@
                 android:text="내용"
                 android:textSize="17dp"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/item_edt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="230dp"
                 android:layout_marginTop="7dp"
                 android:text="5,000"
-                android:textSize="15dp"></EditText>
+                android:textSize="15dp"></TextView>
 
-            <EditText
+            <TextView
                 android:id="@+id/item_edt_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="35dp"
                 android:layout_marginTop="7dp"
                 android:text="3.6"
-                android:textSize="15dp"></EditText>
+                android:textSize="15dp"></TextView>
         </LinearLayout>
 
     </LinearLayout>

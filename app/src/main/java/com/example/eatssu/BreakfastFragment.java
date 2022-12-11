@@ -26,19 +26,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class BreakfastFragment extends Fragment {
-    private RecyclerView recyclerView;
-    private RecyclerView recyclerView2;
-    private RecyclerView recyclerView3;
-    private RecyclerView.Adapter rvAdapter;
-    private RecyclerView.LayoutManager layoutmanager;
     private FirebaseFirestore db;
     private ArrayList<Menu> arrayList = new ArrayList<>();
     private ProgressDialog progressDialog;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     private View view;
     private ImageButton haksikBtn;
     private ImageButton dodamBtn;
     private ImageButton gisikBtn;
+
+    private String datetext;
 
     public BreakfastFragment() {}
 
@@ -46,7 +46,8 @@ public class BreakfastFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_breakfast,container,false);
-
+        layoutManager = new LinearLayoutManager(getContext());
+        adapter = new MenuAdapter();
         haksikBtn = (ImageButton) view.findViewById(R.id.haksik_info);
         haksikBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,51 +77,34 @@ public class BreakfastFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-//        progressDialog = new ProgressDialog(getActivity());
-//        progressDialog.setCancelable(false);
-//        progressDialog.setMessage("Fetching data");
-//        progressDialog.show();
-//        ArrayList<Menu> arraryList = new ArrayList<Menu>();
-//        rvAdapter = new MenuAdapter(arrayList, getActivity());
-//        recyclerView = view.findViewById(R.id.rv_breakfast_haksik);
-//        recyclerView2 = view.findViewById(R.id.rv_breakfast_dodam);
-//        recyclerView3 = view.findViewById(R.id.rv_breakfast_gisik);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setAdapter(rvAdapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        db = FirebaseFirestore.getInstance();
         //EventChangeListener();
-
         return view;
     }
-
-//    private void EventChangeListener() {
-//        db.collection("menus").orderBy("2022.12.03(토)", Query.Direction.ASCENDING)
-//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                        if(error != null) {
-//                            if(progressDialog.isShowing()) {
-//                                progressDialog.dismiss();
-//                            }
-//                            Log.e("Firestore error", error.getMessage());
-//                            return;
-//                        }
-//                        for (DocumentChange dc : value.getDocumentChanges()) {
-//                            if(dc.getType() == DocumentChange.Type.ADDED) {
-//                                arrayList.add(dc.getDocument().toObject(Menu.class));
-//                            }
-//                            rvAdapter.notifyDataSetChanged();
-//                            if(progressDialog.isShowing()) {
-//                                progressDialog.dismiss();
-//                            }
-//                        }
-//                    }
-//                });
-//    }
+/*
+    private void EventChangeListener() {
+        db.collection("menus").document("2022.11.28(월)").collection("기숙사식당").orderBy("조식", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if(dc.getType() == DocumentChange.Type.ADDED) {
+                                arrayList.add(dc.getDocument().toObject(Menu.class));
+                            }
+                            adapter.notifyDataSetChanged();
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    }
+                });
+    }*/
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -128,8 +112,6 @@ public class BreakfastFragment extends Fragment {
     }
 
     public void initData(View view) {
-        recyclerView = view.findViewById(R.id.rv_breakfast_haksik);
-        recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
         arrayList = new ArrayList<>();
     }
 
