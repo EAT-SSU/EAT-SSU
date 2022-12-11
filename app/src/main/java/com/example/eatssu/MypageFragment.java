@@ -47,6 +47,7 @@ public class MypageFragment extends Fragment {
         // Firebase sign out
         firebaseAuth.signOut();
         Intent intent = new Intent(getActivity(),loginActivity.class);
+        getParentFragmentManager().beginTransaction().remove(MypageFragment.this).commit();
         startActivity(intent);
     }
 

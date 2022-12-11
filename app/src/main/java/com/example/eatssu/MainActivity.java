@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         fragment_board = new BoardFragment();
         fragment_mypage = new MypageFragment();
 
-        Intent intent=getIntent();
-        uid = intent.getStringExtra("uid");
-        //Log.d("main-uid",uid);
+        Intent intent = getIntent();
+        String userProfile = intent.getStringExtra("USER_PROFILE");
+        //textView.setText(userProfile);
 
         NavigationBarView navigationBarView= findViewById(R.id.nav_bottom);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container_fragment, fragment_home).commitAllowingStateLoss();
@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.main_container_fragment, fragment_mypage)
                                 .commitAllowingStateLoss();
+
+
                         return true;
 
                 }

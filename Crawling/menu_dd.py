@@ -13,7 +13,7 @@ from firebase_admin import db  # realtime db
 from firebase_admin import firestore  # firestore
 
 # Use a service account
-cred = credentials.Certificate('Crawling/myKey.json')
+cred = credentials.Certificate('C:/Users/qldls/Documents/EAT-SSU/Crawling/mykey.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -67,67 +67,80 @@ date_container=[]
 # 요일 바꾸기 도전!
 #for i in range(1,7): #1월~6토
 
-
-i=5
-#닫기 버튼
-닫기 = s.find_element(
-    By.XPATH, '//*[@id="smenu1"]/div[3]/div')
-닫기.click()
-
-week = s.find_element(
-    By.XPATH, '//*[@id="useDt{0}"]'.format(i))
-# week= s.find_element(By.ID, "useDt{0}".format(i))
-week.click()
-
-#오늘의 식단 클릭
-오늘의식단 = s.find_element(
-    By.XPATH, '//*[@id="menuTop1"]')
-오늘의식단.click()
-
-#도큐먼트 이름을 날짜로 설정하기
-#도큐먼트 이름
-day =soup.select('#viewDt')
-        #By.XPATH, '//*[@id="viewDt"]')
-date_container=[]
-for i in day:
-    date_container.append(i.text)
-print(date_container)
-
 Button = s.find_element(By.NAME, "rest")
 숭실도담식당 = s.find_element(
     By.CSS_SELECTOR, "#smenu1 > div:nth-child(1) > div > div > select > option:nth-child(2)")#value2 도담
 Button.click()
 숭실도담식당.click()
 
-time.sleep(3)
-html = s.page_source
- 
 
-dd_container=[]
-도담soup = BeautifulSoup(html, 'html.parser')
-중식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
-##mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
-중식4=도담soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
-##mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
-석식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
-##mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
-# mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(1)
-for i in 중식1:
-    dd_container.append(i.text)
-for i in 중식4:
-    dd_container.append(i.text)
-for i in 석식1:
-    dd_container.append(i.text)
-for i in dd_container:
-    print(i)
-# print(container)
-time.sleep(3)  # 추후 명시적 대기로 바꾸어야 함
-#'{0}'.format(date_container[0])
+for i in range(1,7):
+    
+    j=12
+    #닫기 버튼
+    닫기 = s.find_element(
+        By.XPATH, '//*[@id="smenu1"]/div[3]/div')
+    닫기.click()
 
-도담_doc_ref = db.collection(u'menus').document(u'2022.12.09(금)').collection(u'숭실도담식당').document('도담메뉴')
-도담_doc_ref.set({
-    u'중식1': "{0}".format(dd_container[0]),
-    u'중식4': "{0}".format(dd_container[1]),
-    u'석식1': "{0}".format(dd_container[2]),
-})
-html = s.page_source
+    week = s.find_element(
+        By.XPATH, '//*[@id="useDt{0}"]'.format(i))
+    # week= s.find_element(By.ID, "useDt{0}".format(i))
+    week.click()
+
+    #오늘의 식단 클릭
+#    오늘의식단 = s.find_element(
+#        By.XPATH, '//*[@id="menuTop1"]')
+#    오늘의식단.click()
+
+    #도큐먼트 이름을 날짜로 설정하기
+    #도큐먼트 이름
+    day =soup.select('#viewDt')
+            #By.XPATH, '//*[@id="viewDt"]')
+    date_container=[]
+    for i in day:
+        date_container.append(i.text)
+    print(date_container)
+
+
+    time.sleep(3)
+    html = s.page_source
+    
+
+    dd_container=[]
+    도담soup = BeautifulSoup(html, 'html.parser')
+    중식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
+    ##mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+    중식4=도담soup.select("#mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
+    ##mainDiv > table > tbody > tr:nth-child(4) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+    석식1=도담soup.select("#mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(1) > b > font")
+    ##mainDiv > table > tbody > tr:nth-child(6) > td.menu_list > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > b")
+    # mainDiv > table > tbody > tr:nth-child(2) > td.menu_list > div:nth-child(1)
+    for i in 중식1:
+        dd_container.append(i.text)
+    for i in 중식4:
+        dd_container.append(i.text)
+    for i in 석식1:
+        dd_container.append(i.text)
+    for i in dd_container:
+        print(i)
+    # print(container)
+    time.sleep(3)  # 추후 명시적 대기로 바꾸어야 함
+    #'{0}'.format(date_container[0])
+
+
+    도담_doc_ref = db.collection(u'숭실도담식당').document(u'2022.12.{0}'.format(j)).collection('중식1').document('메뉴')
+    도담_doc_ref.set({
+        u'메뉴': "{0}".format(dd_container[0]),
+    })
+
+    도담_doc_ref = db.collection(u'숭실도담식당').document(u'2022.12.{0}'.format(j)).collection('중식4').document('메뉴')
+    도담_doc_ref.set({
+        u'메뉴': "{0}".format(dd_container[2]),
+    })
+
+    도담_doc_ref = db.collection(u'숭실도담식당').document(u'2022.12.{0}'.format(j)).collection('석식').document('메뉴')
+    도담_doc_ref.set({
+        u'메뉴': "{0}".format(dd_container[2]),
+    })
+    html = s.page_source
+    j=j+1
