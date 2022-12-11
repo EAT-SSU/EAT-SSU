@@ -31,9 +31,9 @@ public class loginActivity extends AppCompatActivity {
     private SignInButton signInButton; //구글로그인 버튼
     private GoogleSignInClient mGoogleSignInClient;
 
-    private String TAG="mainTag";
+    private String TAG = "mainTag";
     private FirebaseAuth firebaseAuth;
-    private int RC_SIGN_IN=123;
+    private int RC_SIGN_IN = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class loginActivity extends AppCompatActivity {
         configGoogleSignIn();
         initializeFirebaseAuth();
 
-        firebaseAuth =  FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         //버튼 등록하기
         Button mSignUpBtn = findViewById(R.id.btn_movetosignup); //맞나
         Button mLoginBtn = findViewById(R.id.btn_login);
@@ -75,34 +75,33 @@ public class loginActivity extends AppCompatActivity {
         });
 
         //가입 버튼이 눌리면
-        mSignUpBtn.setOnClickListener(new View.OnClickListener(){
+        mSignUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //intent함수를 통해 register액티비티 함수를 호출한다.
-                Intent intent = new Intent(loginActivity.this,SignUpActivity.class); //맞나
+                Intent intent = new Intent(loginActivity.this, SignUpActivity.class); //맞나
                 startActivity(intent);
 
             }
         });
 
         //로그인 버튼이 눌리면
-        mLoginBtn.setOnClickListener(new View.OnClickListener(){
-
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = mEmailText.getText().toString().trim();
                 String pwd = mPasswordText.getText().toString().trim();
-                String uid = firebaseAuth.getCurrentUser().getUid();
-                firebaseAuth.signInWithEmailAndPassword(email,pwd)
+                //String uid = firebaseAuth.getCurrentUser().getUid();
+                firebaseAuth.signInWithEmailAndPassword(email, pwd)
                         .addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Intent intent = new Intent(loginActivity.this, MainActivity.class);
-                                    Log.d("login-success",uid);
+                                    //Log.d("login-success",uid);
                                     startActivity(intent);
-                                }else{
-                                    Toast.makeText(loginActivity.this,"로그인 오류",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(loginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -276,13 +275,10 @@ public class loginActivity extends AppCompatActivity {
     }
 
 
-
-
     // [START signin]
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
     // [END signin]
-
 }
