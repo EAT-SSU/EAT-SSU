@@ -36,8 +36,11 @@ public class ReviewActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review3);
+        TextView menuName = findViewById(R.id.menu);
         Intent intent = getIntent();
         Float getRating = intent.getFloatExtra("rating",0);
+        String getMenu = intent.getStringExtra("Menu");
+        menuName.setText(getMenu);
         Button buttonNext = findViewById(R.id.registReviewBtn);
         db = FirebaseFirestore.getInstance();
         EditText writeReview = findViewById(R.id.editText1); //리뷰 입력칸
@@ -63,7 +66,7 @@ public class ReviewActivity3 extends AppCompatActivity {
                 data.put("timestamp",timestamp);
 
 
-                db.collection("ReviewMenu").add(data)
+                db.collection("ReviewMenu").document(getMenu).collection("menu").add(data)
                         .addOnSuccessListener(new OnSuccessListener() {
                             @Override
                             public void onSuccess(Object o) {
