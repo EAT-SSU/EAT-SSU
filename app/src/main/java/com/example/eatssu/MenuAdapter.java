@@ -23,16 +23,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView 메뉴;
-        private final TextView price;
-        private final TextView rate;
+//        private final TextView price;
+//        private final TextView rate;
 
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             메뉴 = (TextView) view.findViewById(R.id.item_edt_contents);
-            price = (TextView) view.findViewById(R.id.item_edt_price);
-            rate = (TextView) view.findViewById(R.id.item_edt_rate);
+//            price = (TextView) view.findViewById(R.id.item_edt_price);
+//            rate = (TextView) view.findViewById(R.id.item_edt_rate);
 
         }
 
@@ -57,9 +57,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MenuAdapter.ViewHolder viewholder, int position) {
-        viewholder.메뉴.setText(arrayList.get(position).getMenu().toString());
-        viewholder.price.setText("5000");
-        viewholder.rate.setText("4.5");
+        viewholder.메뉴.setText(arrayList.get(position).get메뉴().toString());
+//        viewholder.price.setText("5000");
+//        viewholder.rate.setText("4.5");
     }
 
     @Override

@@ -75,10 +75,10 @@ public class Menu {
 //    public void setSuksik1(String 석식1) {
 //        this.석식1 = 석식1;
 //    }
-    public String getMenu() {
+    public String get메뉴() {
         return 메뉴;
     }
-    public void setMenu(String 메뉴) {
+    public void set메뉴(String 메뉴) {
         this.메뉴 = 메뉴;
     }
 

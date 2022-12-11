@@ -56,7 +56,6 @@ public class HomeFragment extends Fragment {
     Button dateBtn;
     private ArrayList<Menu> arrayList = new ArrayList<>();
     private ArrayList<Dodam> arrayList2 = new ArrayList<>();
-    private List<Map<String, Object>> dataList;
 
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
@@ -65,6 +64,7 @@ public class HomeFragment extends Fragment {
     private FirebaseDatabase database;
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
+    private RecyclerView recyclerView3;
     private RecyclerView.LayoutManager layoutManager;
 
     private String 조식;
@@ -89,19 +89,22 @@ public class HomeFragment extends Fragment {
 //        viewPager2 = view.findViewById(R.id.vp_main);
         adapter = new MenuAdapter(arrayList, getActivity());
         adapter2 = new DodamAdapter(arrayList2, getActivity());
+        //adapter3 = new HaksikAdapter(arrayList2, getActivity());
 //        viewPager2.setAdapter(adapter);
         dateBtn = view.findViewById(R.id.main_date_btn);
         db = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.rv1_haksikdata);
         recyclerView2 = view.findViewById(R.id.rv1_dodamdata);
-        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView3 = view.findViewById(R.id.rv1_gisikdata);
         recyclerView.setAdapter(adapter);
         recyclerView2.setAdapter(adapter2);
-
+//        recyclerView3.setAdapter(adapter3);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView3.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 //        viewPager2.setSaveEnabled(false);
 //        final List<String> tabElement = Arrays.asList("아침", "점심", "저녁");
-//
 //
 //        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
 //            @Override
@@ -138,6 +141,7 @@ public class HomeFragment extends Fragment {
             }
         });
         Location();
+        EventChangeListener2();
         EventChangeListener();
         return view;
     }
@@ -173,9 +177,36 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
     private void EventChangeListener() {
-        db.collection("학생식당").document("2022.12.16").collection("메뉴")
+        db.collection("숭실도담식당").document("2022.12.12").collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        assert value != null;
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if(dc.getType() == DocumentChange.Type.ADDED) {
+                                arrayList2.add(dc.getDocument().toObject(Dodam.class));
+                            }
+//                            recyclerView2.scrollToPosition(DodamAdapter.getItemCount());
+
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                                adapter2.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void EventChangeListener2() {
+        db.collection("학생식당").document("2022.12.12").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
