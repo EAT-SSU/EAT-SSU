@@ -21,14 +21,14 @@ import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.ktx.Firebase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ReviewActivity3 extends AppCompatActivity {
     private FirebaseFirestore db;
     private String putReview;
-    private String UID;
-    private String todaysDate;
     FirebaseAuth auth;
 
 
@@ -40,24 +40,29 @@ public class ReviewActivity3 extends AppCompatActivity {
         Float getRating = intent.getFloatExtra("rating",0);
         Button buttonNext = findViewById(R.id.registReviewBtn);
         db = FirebaseFirestore.getInstance();
-        //TextView userId =  findViewById(R.id.userName);
         EditText writeReview = findViewById(R.id.editText1); //리뷰 입력칸
 
         auth = FirebaseAuth.getInstance();
-        //UID=auth.getCurrentUser().getUid();
-        UID="exampleUserId";
-        todaysDate="2022-ex-ample";
+        String date=getCurrentTimeStamp();
+        String timestamp=getCurrentTimeStamp2();
+        auth = FirebaseAuth.getInstance();
+        String UID=auth.getCurrentUser().getUid();
 
 
         buttonNext.setOnClickListener(new View.OnClickListener(){
+            FirebaseAuth auth;
             @Override
             public void onClick(View v){
+
                 Map<String, Object> data = new HashMap<>();
                 putReview = writeReview.getText().toString();
                 data.put("ID",UID);
                 data.put("context",putReview);
-                data.put("date",todaysDate);
+                data.put("date",date);
                 data.put("rating",getRating);
+                data.put("timestamp",timestamp);
+
+
                 db.collection("ReviewMenu").add(data)
                         .addOnSuccessListener(new OnSuccessListener() {
                             @Override
@@ -76,12 +81,42 @@ public class ReviewActivity3 extends AppCompatActivity {
 
                 Intent intent = new Intent(ReviewActivity3.this,ReviewActivity.class);
                 startActivity(intent);
-
             }
         });
 
 
     }
+
+    public static String getCurrentTimeStamp(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+            return currentDateTime;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+    }
+
+    public static String getCurrentTimeStamp2(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+            return currentDateTime;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+    }
+
+
+
 
 
 }
