@@ -88,18 +88,21 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = mEmailText.getText().toString().trim();
                 String pwd = mPasswordText.getText().toString().trim();
+                String uid = firebaseAuth.getCurrentUser().getUid();
                 firebaseAuth.signInWithEmailAndPassword(email,pwd)
                         .addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
                                     Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                                    Log.d("login-success",uid);
                                     startActivity(intent);
                                 }else{
                                     Toast.makeText(loginActivity.this,"로그인 오류",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
             }
         });
     }
