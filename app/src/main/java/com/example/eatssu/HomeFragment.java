@@ -20,6 +20,7 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -141,8 +142,6 @@ public class HomeFragment extends Fragment {
             }
         });
         Location();
-        EventChangeListener2();
-        EventChangeListener();
         return view;
     }
     private void Location() {
@@ -175,6 +174,15 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        arrayList2.clear();
+        arrayList.clear();
+        EventChangeListener2();
+        EventChangeListener();
     }
 
     private void EventChangeListener() {
