@@ -78,13 +78,11 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         });
             }
-            else{
+            else
                 Toast.makeText(SignUpActivity.this, "비밀번호가 일치하지 않습니다." ,Toast.LENGTH_SHORT).show();
-            }
         }
-        else{
+        else
             Toast.makeText(SignUpActivity.this, "아아디와 비밀번호를 확인해주세요." ,Toast.LENGTH_SHORT).show();
-        }
     }
 
 
