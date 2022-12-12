@@ -3,96 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MypageFragment">
 
-    <LinearLayout
-        android:id="@+id/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="5"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/tv_eat_ssu">
-
-
-
-        <TextView
-            android:id="@+id/mypage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_weight="3"
-            android:background="#00000000"
-            android:text="내정보"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="16dp"
-            android:textColor="@color/main"
-            android:textSize="25dp"
-            android:textStyle="bold">
-        </TextView>
-
-
-
-
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_baseline_person_24"
-            app:tint="@color/main"
-            android:layout_weight="1"></ImageView>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="9">
-
-        <TextView
-            android:id="@+id/mypage_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="ID 75"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:textColor="@color/main" />
-
-
-        <TextView
-            android:id="@+id/item_tv_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="soongsil@gmail.com"
-            android:textColor="@color/main"
-            android:layout_marginTop="7dp"
-            android:textSize="15dp"
-            android:layout_marginStart="16dp"
-            ></TextView>
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/main" >
-
-    </View>
-    </LinearLayout>
-    </LinearLayout>
 </FrameLayout>

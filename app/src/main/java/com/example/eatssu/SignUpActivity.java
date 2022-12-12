@@ -1,5 +1,7 @@
 package com.example.eatssu;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,25 +32,26 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
-        findViewById(R.id.btn_summit).setOnClickListener(onClickListener);
+
+        EditText emailEditText = findViewById(R.id.edt_sEmailAddress);
+        EditText passwordEditText = findViewById(R.id.edt_Password1);
+        EditText password2EditText = findViewById(R.id.edt_Password2);
+
+
+        Button signupButton = findViewById(R.id.btn_summit);
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailEditText.getText().toString().trim();
+                String password= passwordEditText.getText().toString().trim();
+                String passwordCheck=password2EditText.getText().toString().trim();
+
+                signUp(email, password,passwordCheck);
+            }
+        });
     }
 
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (v.getId() == R.id.btn_summit) {
-                signUp();
-            }
-        }
-    };
-
-
-    private void signUp(){
-        String email=((EditText)findViewById(R.id.edt_sEmailAddress)).getText().toString().trim();
-        String password=((EditText)findViewById(R.id.et_Password)).getText().toString().trim();
-        String passwordCheck=((EditText)findViewById(R.id.edt_Password2)).getText().toString().trim();
-
+    private void signUp(String email, String password,String passwordCheck) {
         if(email.length()>0 && password.length()>0 && passwordCheck.length()>0){
             if(password.equals(passwordCheck)){//비밀번호 체크
                 mAuth.createUserWithEmailAndPassword(email, password)
@@ -56,27 +59,37 @@ public class SignUpActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(SignUpActivity.this, "회원가입에 성공했습니다." ,Toast.LENGTH_SHORT).show();
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI(user);
 
-                                    //가입이 이루어져을시 가입 화면을 빠져나감.
                                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                    //Log.d("login-success",uid);
                                     startActivity(intent);
-                                    //finish();
-                                    //Toast.makeText(SignUpActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    if(task.getException().toString() !=null){
-                                        Toast.makeText(SignUpActivity.this, "회원가입에 실패했습니다." ,Toast.LENGTH_SHORT).show();
-                                    }
+                                    // If sign in fails, display a message to the user.
+                                    //Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Log.d(TAG, "createUserWithEmail:failure");
+                                    Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
                                 }
                             }
                         });
             }
-            else{
+            else
                 Toast.makeText(SignUpActivity.this, "비밀번호가 일치하지 않습니다." ,Toast.LENGTH_SHORT).show();
-            }
         }
-        else{
+        else
             Toast.makeText(SignUpActivity.this, "아아디와 비밀번호를 확인해주세요." ,Toast.LENGTH_SHORT).show();
-        }
+    }
+
+
+    private void updateUI(FirebaseUser user) {
+        if (user == null) return;
+
+        Log.d(TAG, "email: " + user.getEmail());
+        Log.d(TAG, "uid: " + user.getUid());
     }
 }

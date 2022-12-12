@@ -26,11 +26,9 @@ import java.util.Map;
 
 public class ReviewActivity3 extends AppCompatActivity {
     private FirebaseFirestore db;
-    private String reviewContext;
-    private String userId;
-    private String date;
     private String putReview;
-    private Float putRate;
+    private String UID;
+    private String todaysDate;
     FirebaseAuth auth;
 
 
@@ -47,8 +45,8 @@ public class ReviewActivity3 extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         //UID=auth.getCurrentUser().getUid();
-        userId="exampleUserId";
-        date="2022-ex-ample";
+        UID="exampleUserId";
+        todaysDate="2022-ex-ample";
 
 
         buttonNext.setOnClickListener(new View.OnClickListener(){
@@ -56,11 +54,10 @@ public class ReviewActivity3 extends AppCompatActivity {
             public void onClick(View v){
                 Map<String, Object> data = new HashMap<>();
                 putReview = writeReview.getText().toString();
-                putRate = getRating;
-                data.put("ID",userId);
+                data.put("ID",UID);
                 data.put("context",putReview);
-                data.put("date",date);
-                data.put("rating",putRate);
+                data.put("date",todaysDate);
+                data.put("rating",getRating);
                 db.collection("ReviewMenu").add(data)
                         .addOnSuccessListener(new OnSuccessListener() {
                             @Override

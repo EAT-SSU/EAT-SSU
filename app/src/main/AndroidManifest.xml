@@ -5,8 +5,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
 
     <application
@@ -18,6 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EATSSU"
+
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -27,8 +33,6 @@
             android:name=".InfoActivity_Gisik"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Dialog">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -37,8 +41,6 @@
             android:name=".InfoActivity_Dodam"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Dialog">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -47,28 +49,11 @@
             android:name=".InfoActivity_Haksik"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Dialog">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".ReviewActivity"
-            android:exported="true">
 
-        </activity>
-        <activity
-            android:name=".ReviewActivity2"
-            android:exported="true">
-
-        </activity>
-
-        <activity
-            android:name=".ReviewActivity3"
-            android:exported="true">
-
-        </activity>
         <activity
             android:name=".loginActivity"
             android:exported="true">
@@ -90,15 +75,27 @@
                 android:value="" />
         </activity>
 
-
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ReviewActivity2"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".ReviewActivity3"
+            android:exported="true">
+
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"

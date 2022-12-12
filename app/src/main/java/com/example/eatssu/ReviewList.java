@@ -12,7 +12,6 @@ class ReviewList {
     private float rating;
     private String date;
 
-    private ReviewList() {}
 
     public ReviewList(String userId, String reviewContext, float rating, String date){
         this.userId = userId;
