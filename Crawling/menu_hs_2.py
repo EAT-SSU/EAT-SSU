@@ -40,11 +40,11 @@ end_time = time.perf_counter()
 print(f"time elapsed : {int(round((end_time - start_time) * 1000))}ms")
     
 
-for i in range(12,17):
-    시간='2022.12.'+ str(i)
+for i in range(0,6):
+    시간='2022.12.'+ str(i+12)
     학식_doc_ref = db.collection(u'학생식당').document(u'{0}'.format(시간)).collection(u'메뉴')
     학식_doc_ref.document('new덮밥').set({
-        u'메뉴': "{0}".format(hslist2[0]),        
+        u'메뉴': "{0}".format(hslist2[i]),        
         })
     학식_doc_ref.document('덮밥2').set({
         u'메뉴': "닭갈비덮밥",        
