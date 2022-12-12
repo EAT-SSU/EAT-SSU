@@ -60,65 +60,19 @@ android:orientation="vertical"
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/date"
+            android:id="@+id/Date"
             android:orientation="horizontal"
             android:gravity="right"
             android:layout_marginRight="30dp">
             <TextView
-                android:id="@+id/year"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2022"
+                android:text="2022년 12월 13일"
                 android:textSize="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/font_gray_2"
                 android:layout_gravity="bottom"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:text="년"
-                android:textStyle="bold"
-                android:textColor="@color/font_gray_2"
-                android:layout_gravity="bottom"/>
-            <TextView
-                android:id="@+id/month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="10dp"
-
-                android:textStyle="bold"
-                android:textColor="@color/font_gray_2"
-                android:layout_gravity="bottom"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="월"
-                android:textSize="10dp"
-
-                android:textStyle="bold"
-                android:textColor="@color/font_gray_2"
-                android:layout_gravity="bottom"/>
-            <TextView
-                android:id="@+id/day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="10dp"
-
-                android:textStyle="bold"
-                android:textColor="@color/font_gray_2"
-                android:layout_gravity="bottom"/>\
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="일"
-                android:textSize="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/font_gray_2"
-                android:layout_gravity="bottom"
-                />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
