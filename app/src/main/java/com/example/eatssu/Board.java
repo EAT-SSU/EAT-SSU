@@ -9,26 +9,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Board {
-    private String mTitle;
-    private String mContent;
-    private String mUid;
-    private int mLikeCount;
-    private int mMessageCount;
-    private String mTimestamp;
-    private String mTrimUID;
+    private String title;
+    private String content;
+    private String uid;
+    private int likeCount;
+    private int messageCount;
+    private String timestamp;
+    private String trimUid;
     //private int datetime;n
     //alt insert 하면 게터 세터 한번에 굿!
 
     private Board(){}
 
-
-    public Board(String title, String content,String trimUID, int likeCount,int messageCount) {
-
-        mTitle= title;
-        mContent = content;
-        mLikeCount=likeCount;
-        mMessageCount=messageCount;
-        mTrimUID=trimUID;
+    public Board(String title, String content,String trimUid, int likeCount,int messageCount) {
+        this.title= title;
+        this.content = content;
+        this.likeCount=likeCount;
+        this.messageCount=messageCount;
+        this.trimUid=trimUid;
     }
 /*
     public static ArrayList<Board> createContactsList(int numContacts) {
@@ -42,56 +40,30 @@ public class Board {
     }*/
 
     public String getTitle() {
-        return mTitle;
-    }
-
-    public void setTitle(String mTitle) {
-        this.mTitle = mTitle;
+        return title;
     }
 
     public String getContent() {
-        return mContent;
-    }
-
-    public void setContent(String mContent) {
-        this.mContent = mContent;
+        return content;
     }
 
     public String getUid() {
-        return mUid;
-    }
-
-    public void setUid(String mUid) {
-        this.mUid = mUid;
+        return uid;
     }
 
     public int getLikeCount() {
-        return mLikeCount;
-    }
-
-    public void setLikeCount(int mLikeCount) {
-        this.mLikeCount = mLikeCount;
+        return likeCount;
     }
 
     public int getMessageCount() {
-        return mMessageCount;
+        return messageCount;
     }
 
-    public void setMessageCount(int mMessageCount) {
-        this.mMessageCount = mMessageCount;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-
-    public String getTrimUID() {
-        return mTrimUID;
+    public String getTrimUid() {
+        return trimUid;
     }
-
-    public void setTrimUID(String mTrimUID) {
-        this.mTrimUID = mTrimUID;
-    }
-
-    public String getTimestamp() { return mTimestamp; }
-
-    public void setTimestamp(String timestamp) { mTimestamp = timestamp; }
-
 }
