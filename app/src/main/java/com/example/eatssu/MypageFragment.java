@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,6 +32,15 @@ public class MypageFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_mypage,container,false);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        TextView ID = view.findViewById(R.id.tv_mp_id);
+        TextView EMAIL = view.findViewById(R.id.tv_mp_email);
+
+        String uid=firebaseAuth.getCurrentUser().getUid();
+        uid= uid.substring(0,4);
+
+        EMAIL.setText(firebaseAuth.getCurrentUser().getEmail());
+        ID.setText("ID "+ uid);
 
         Button signOutButton = view.findViewById(R.id.sign_out_button);
         signOutButton.setOnClickListener(new View.OnClickListener() {
