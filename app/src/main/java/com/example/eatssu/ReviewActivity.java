@@ -70,8 +70,6 @@ public class ReviewActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); //LayoutManager 설정
 
-        adapter = new ReviewAdapter(arrayList);
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
