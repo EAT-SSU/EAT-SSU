@@ -81,6 +81,7 @@ public class WriteBoardFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_write_board, container, false);
 
     }
+
     public static String getCurrentTimeStamp(){
         try {
 

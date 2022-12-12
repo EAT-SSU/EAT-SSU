@@ -19,6 +19,7 @@ public class ReviewActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review2);
+        TextView menuName = findViewById(R.id.menu);
         Button buttonNext = findViewById(R.id.btnNext);
         Button btnTag1 =  findViewById(R.id.choose1);
         Button btnTag2 =  findViewById(R.id.choose2);
@@ -34,6 +35,12 @@ public class ReviewActivity2 extends AppCompatActivity {
 
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         TextView countstar = findViewById(R.id.countstar);
+        Intent intent = getIntent();
+        String getMenu = intent.getStringExtra("Menu");
+
+
+
+        menuName.setText(getMenu);
 
         countstar.setText("0");
 
@@ -53,6 +60,7 @@ public class ReviewActivity2 extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(ReviewActivity2.this,ReviewActivity3.class);
                 intent.putExtra("rating", sendRating);
+                intent.putExtra("Menu",getMenu);
                 startActivity(intent);
             }
         }
