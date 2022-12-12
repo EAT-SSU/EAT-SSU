@@ -95,15 +95,17 @@
 
                     </View>
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <TextView
                         android:id="@+id/rv_breakfast_haksik"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="학식은 아침이 제공되지 않습니다!"
                         android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="parent" >
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                    </TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -175,15 +177,17 @@
 
                     </View>
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <TextView
                         android:id="@+id/rv_breakfast_dodam"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:text="도담은 아침이 제공되지 않습니다!"
+                        android:layout_marginLeft="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="parent" >
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                    </TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -254,15 +258,15 @@
 
                     </View>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_breakfast_gisik"
+                    <ListView
+                        android:id="@+id/breakfast_listview_gisik"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="parent" >
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                    </ListView>
                 </LinearLayout>
 
             </LinearLayout>

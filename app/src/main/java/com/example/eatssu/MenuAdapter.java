@@ -1,5 +1,6 @@
 package com.example.eatssu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,61 +22,42 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         this.context = context;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView Dodam1;
-        //private final TextView Dodam2;
-//        private final TextView content;
-//        private final TextView id;
-//        private final TextView likeCount;
+        private final TextView 메뉴;
+//        private final TextView price;
+//        private final TextView rate;
+
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
+            메뉴 = (TextView) view.findViewById(R.id.item_edt_contents);
+//            price = (TextView) view.findViewById(R.id.item_edt_price);
+//            rate = (TextView) view.findViewById(R.id.item_edt_rate);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAbsoluteAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+//                        val item = arrayList
+                    }
+                }
+            });
 
-/*
-            class Board {
-                private String title;
-                private String content;
-                private int id;
-                private int likeCount;
-                private int messageCount;
-                private int datetime;*/
-            Dodam1 = (TextView) view.findViewById(R.id.item_edt_contents);
-//            content = (TextView) view.findViewById(R.id.tv_content);
-//            id = (TextView) view.findViewById(R.id.tv_id);
-//            likeCount = (TextView) view.findViewById(R.id.tv_likeCount);
         }
 
-        public TextView getDodam1() {
-            return Dodam1;
-        }
-//
-//        public TextView getContent() {
-//            return content;
-//        }
-//
-//        public TextView getId() {
-//            return id;
-//        }
-//
-//        public TextView getLikeCount() {
-//            return likeCount;
-//        }
-
-        /*
-        public TextView getMessageCount() {
-            return messageCount;
+        public TextView Menu() {
+           return 메뉴;
         }
 
-        public TextView getDatetime() {
-            return datetime;
-        }*/
     }
 
     public MenuAdapter(){} //생성자
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MenuAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.haksik_recyclerview_data, parent, false);
         MenuAdapter.ViewHolder holder = new MenuAdapter.ViewHolder(view);
@@ -83,8 +65,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewholder, int position) {
-        viewholder.Dodam1.setText(arrayList.get(position).getDodam1());
+    public void onBindViewHolder(@NonNull MenuAdapter.ViewHolder viewholder, int position) {
+        viewholder.메뉴.setText(arrayList.get(position).get메뉴().toString());
+//        viewholder.price.setText("5000");
+//        viewholder.rate.setText("4.5");
     }
 
     @Override
