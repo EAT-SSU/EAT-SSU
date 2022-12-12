@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
 import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.AggregateQuery;
+import com.google.firebase.firestore.AggregateQuerySnapshot;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -29,20 +31,23 @@ public class ReviewActivity extends AppCompatActivity {
     private FirestorePagingAdapter<ReviewList,ReviewHolder> adapter;
     public  String exampleMenu="설렁탕";
 
-
-    Query query;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
         TextView menuName = findViewById(R.id.menu);
+        TextView CountReview = findViewById(R.id.countReview);
         menuName.setText(exampleMenu);
+
         recyclerView = findViewById(R.id.reviewRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager); //LayoutManager 설정
 
+        Intent intentFrom3 = getIntent();
+        String getRating = intentFrom3.getStringExtra("countReview");
+
+       // CountReview.setText(String.valueOf(getRating));
 
         Button buttonNext = findViewById(R.id.reviewGoButton);
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -54,12 +59,14 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
+
         Query baseQuery = FirebaseFirestore.getInstance().collection("ReviewMenu").document(exampleMenu).collection("menu").orderBy("timestamp", Query.Direction.DESCENDING);
         PagingConfig config = new PagingConfig(4, 2, false);
         FirestorePagingOptions<ReviewList> options = new FirestorePagingOptions.Builder<ReviewList>()
                 .setLifecycleOwner(this)
                 .setQuery(baseQuery, config, ReviewList.class)
                 .build();
+
 
         adapter = new FirestorePagingAdapter<ReviewList, ReviewHolder>(options) {
             @Override

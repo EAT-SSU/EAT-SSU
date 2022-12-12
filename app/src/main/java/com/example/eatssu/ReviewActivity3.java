@@ -2,10 +2,13 @@ package com.example.eatssu;
 
 import static android.content.ContentValues.TAG;
 
+import static java.security.AccessController.getContext;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +16,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.annotations.NotNull;
+import com.google.firebase.firestore.AggregateQuery;
+import com.google.firebase.firestore.AggregateSource;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.FirestoreClient;
 import com.google.firebase.ktx.Firebase;
 
 import java.text.SimpleDateFormat;
@@ -30,6 +43,7 @@ public class ReviewActivity3 extends AppCompatActivity {
     private FirebaseFirestore db;
     private String putReview;
     FirebaseAuth auth;
+    public int count=0;
 
 
     @Override
@@ -37,12 +51,14 @@ public class ReviewActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review3);
         TextView menuName = findViewById(R.id.menu);
+
         Intent intent = getIntent();
         Float getRating = intent.getFloatExtra("rating",0);
         String getMenu = intent.getStringExtra("Menu");
         menuName.setText(getMenu);
-        Button buttonNext = findViewById(R.id.registReviewBtn);
+
         db = FirebaseFirestore.getInstance();
+        Button buttonNext = findViewById(R.id.registReviewBtn);
         EditText writeReview = findViewById(R.id.editText1); //리뷰 입력칸
 
         auth = FirebaseAuth.getInstance();
@@ -82,8 +98,32 @@ public class ReviewActivity3 extends AppCompatActivity {
                             }
                         });
 
+//                db.collection("ReviewMenu").document(getMenu).collection("menu").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//
+//                        if (task.isSuccessful()) {
+//                            count = 0;
+//
+//                            for (DocumentSnapshot document : task.getResult()) {
+//                                count++;
+//                            }
+//                            String countmenu = Integer.toString(count);
+//                            Intent intent3 = new Intent(ReviewActivity3.this,ReviewActivity.class);
+//                            intent.putExtra("countReview",countmenu);
+//                        } else {
+//
+//
+//                            Log.w(TAG, "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
+
+
+
                 Intent intent = new Intent(ReviewActivity3.this,ReviewActivity.class);
                 startActivity(intent);
+
             }
         });
 
