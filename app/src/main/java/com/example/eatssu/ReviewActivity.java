@@ -1,82 +1,106 @@
 package com.example.eatssu;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.paging.PagingConfig;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-
-import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.AggregateQuery;
+import com.google.firebase.firestore.AggregateQuerySnapshot;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.firestore.Query;
 
 public class ReviewActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
 
-    private RecyclerView.Adapter adapter;
-    private ArrayList<ReviewList> arrayList = new ArrayList<>();
-
-
-    private FirebaseAuth auth;
     private FirebaseFirestore db;
-    private DocumentReference docRef;
-
-    private String userId;
-    private String reviewContext;
-    private float rating;
-    private String date;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private FirestorePagingAdapter<ReviewList,ReviewHolder> adapter;
+    public  String exampleMenu="설렁탕";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
+        TextView menuName = findViewById(R.id.menu);
+        TextView CountReview = findViewById(R.id.countReview);
+        menuName.setText(exampleMenu);
+
+        recyclerView = findViewById(R.id.reviewRecyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager); //LayoutManager 설정
+
+        Intent intentFrom3 = getIntent();
+        String getRating = intentFrom3.getStringExtra("countReview");
+
+        // CountReview.setText(String.valueOf(getRating));
+
         Button buttonNext = findViewById(R.id.reviewGoButton);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReviewActivity.this, ReviewActivity2.class);
+                intent.putExtra("Menu", exampleMenu);
                 startActivity(intent);
             }
         });
 
 
-        //=========================테스트를 위한 더미데이터 생성=====================
-//        ArrayList<ReviewList> testDataSet = new ArrayList<>();
-//
-//        for(int i=0;i<10;i++){
-//            testDataSet.add(new ReviewList("user", "이건 별로 맛이 없어요",(float) 3.0,"2022-07-04"));
-//        }
-
-        //===================================================================
+        Query baseQuery = FirebaseFirestore.getInstance().collection("ReviewMenu").document(exampleMenu).collection("menu").orderBy("timestamp", Query.Direction.DESCENDING);
+        PagingConfig config = new PagingConfig(4, 2, false);
+        FirestorePagingOptions<ReviewList> options = new FirestorePagingOptions.Builder<ReviewList>()
+                .setLifecycleOwner(this)
+                .setQuery(baseQuery, config, ReviewList.class)
+                .build();
 
 
+        adapter = new FirestorePagingAdapter<ReviewList, ReviewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ReviewHolder holder, int position, @NonNull ReviewList model) {
+                holder.bind(model);
+            }
 
-        recyclerView = findViewById(R.id.reviewRecyclerView);
-        arrayList = new ArrayList<>();
+            @NonNull
+            @Override
+            public ReviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.review_item, parent, false);
+                return new ReviewHolder(view);
+            }
+        };
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)); //LayoutManager 설정
-
-        recyclerView.setHasFixedSize(true);
+        RecyclerView recyclerView = findViewById(R.id.reviewRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
 
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        adapter.startListening();
+    }
 
+    @Override
+    protected  void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
 
-}
 
+}
