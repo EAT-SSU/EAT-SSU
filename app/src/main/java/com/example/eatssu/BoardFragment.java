@@ -206,7 +206,7 @@ public class BoardFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-/*
+
     @Override
     public void onResume() {
         super.onResume();
@@ -219,6 +219,5 @@ public class BoardFragment extends Fragment {
         } else {
             adapter.notifyDataSetChanged();
         }
-
-    }*/
+    }
 }
