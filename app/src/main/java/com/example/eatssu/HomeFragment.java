@@ -122,13 +122,15 @@ public class HomeFragment extends Fragment {
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
+//        datetext = String.valueOf(mYear) + "." + String.valueOf(mMonth+1) + "." + String.valueOf(mDay);
+        dateBtn.setText(mYear + "-" + (mMonth + 1) + "-" + mDay);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
 
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 dateBtn.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                datetext = dateBtn.toString();
+                datetext = year + "." + (month + 1) + "." + dayOfMonth;
 
             }
         }, mYear, mMonth, mDay);
@@ -184,6 +186,8 @@ public class HomeFragment extends Fragment {
         EventChangeListener2();
         EventChangeListener();
     }
+
+
 
     private void EventChangeListener() {
         db.collection("숭실도담식당").document("2022.12.12").collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)

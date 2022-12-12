@@ -33,6 +33,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             메뉴 = (TextView) view.findViewById(R.id.item_edt_contents);
 //            price = (TextView) view.findViewById(R.id.item_edt_price);
 //            rate = (TextView) view.findViewById(R.id.item_edt_rate);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAbsoluteAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+//                        val item = arrayList
+                    }
+                }
+            });
 
         }
 
