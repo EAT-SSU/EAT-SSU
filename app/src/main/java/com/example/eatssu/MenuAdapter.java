@@ -14,13 +14,24 @@ import java.util.ArrayList;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
-    private ArrayList<Menu> arrayList;
+    private static ArrayList<Menu> arrayList;
     private Context context;
 
     public MenuAdapter(ArrayList<Menu> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
+
+    public interface OnItemClickListener {
+        void onItemClicked(int position, String context);
+    }
+
+    private OnItemClickListener itemClickListener;
+
+    public void setOnItemClickListener (OnItemClickListener listener) {
+        itemClickListener = listener;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView 메뉴;
 //        private final TextView price;
@@ -33,20 +44,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             메뉴 = (TextView) view.findViewById(R.id.item_edt_contents);
 //            price = (TextView) view.findViewById(R.id.item_edt_price);
 //            rate = (TextView) view.findViewById(R.id.item_edt_rate);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAbsoluteAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION) {
-//                        val item = arrayList
-                    }
-                }
-            });
+
 
         }
 
         public TextView Menu() {
-           return 메뉴;
+            return 메뉴;
         }
 
     }
@@ -61,6 +64,17 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.haksik_recyclerview_data, parent, false);
         MenuAdapter.ViewHolder holder = new MenuAdapter.ViewHolder(view);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAbsoluteAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    //arrayList = holder.메뉴.toString();
+                }
+                itemClickListener.onItemClicked(position, String.valueOf(context));
+            }
+        });
         return holder;
     }
 

@@ -1,38 +1,39 @@
 package com.example.eatssu;
 
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-class ReviewList {
-    private String userId;
-    private String reviewContext;
+public class ReviewList {
+
+    private String ID;
+    private String context;
     private float rating;
     private String date;
 
+    public ReviewList() {}
 
-    public ReviewList(String userId, String reviewContext, float rating, String date){
-        this.userId = userId;
-        this.reviewContext = reviewContext;
+    public ReviewList(String ID, String context, float rating, String date){
+        this.ID = ID;
+        this.context = context;
         this.rating = rating;
         this.date = date;
     }
 
-    public String getUserId(){ return userId;}
-    public void  setUserId(String userid){ this.userId = userid;}
 
-    public String getReviewContext(){return reviewContext;}
-    public void setReviewContext(String reviewContext){this.reviewContext = reviewContext;}
+
+    public String getID(){ return ID;}
+
+    public String getContext(){return context;}
 
     public float getRating(){return rating;}
-    public void setRating(float rating){this.rating=rating;}
 
     public String getDate(){return date;}
-    public void setYear(int year){this.date=date;}
-
 
 }
+
 
 

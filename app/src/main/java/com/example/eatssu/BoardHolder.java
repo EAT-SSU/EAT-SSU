@@ -33,7 +33,7 @@ public class BoardHolder extends RecyclerView.ViewHolder {
         mContentField.setText(board.getContent());
         mLikeCountField.setText(String.valueOf(board.getLikeCount()));
         mMessageCountField.setText(String.valueOf(board.getMessageCount()));
-        mTrimUID.setText(board.getTrimUID());
+        mTrimUID.setText("ID"+board.getTrimUid());
         //mUidField.setText(board.getUid());
         mDate.setText(board.getTimestamp());
     }
