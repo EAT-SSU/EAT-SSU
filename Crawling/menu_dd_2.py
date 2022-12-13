@@ -40,7 +40,6 @@ for i in ary:
     soup = BeautifulSoup(i.text, "html.parser")
     em=soup.find(text="중식4")
     도담식당메뉴3=em.find_next("b")
-    찐=도담식당메뉴3.find_next()
     print(도담식당메뉴3.text)
     ddlist3.append(도담식당메뉴3.text)
 
@@ -49,7 +48,6 @@ for i in ary:
     soup = BeautifulSoup(i.text, "html.parser")
     em=soup.find(text="석식1")
     도담식당석식=em.find_next("b")
-    찐석=도담식당석식.find_next()
     print(도담식당석식.text)
     ddlistN.append(도담식당석식.text)
 
