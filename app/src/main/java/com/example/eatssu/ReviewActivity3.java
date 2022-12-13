@@ -69,6 +69,7 @@ public class ReviewActivity3 extends AppCompatActivity {
         String trimId=UID.substring(0,4);
 
 
+
         buttonNext.setOnClickListener(new View.OnClickListener(){
             FirebaseAuth auth;
             @Override
@@ -160,12 +161,12 @@ public class ReviewActivity3 extends AppCompatActivity {
     }
 
 
+
     @Override
     protected void onStop() {
         super.onStop();
         finish();
     }
-
 
 
 }

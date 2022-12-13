@@ -68,3 +68,38 @@ for k in gs_container:
     u'석식': "{0}".format(gs_container[2]),
 })
 html = s.page_source
+
+
+for i in range(0,6):
+    시간='2022.12.'+ str(i+12)
+    도담_doc_ref = db.collection(u'기숙사식당').document(u'{0}'.format(시간)).collection(u'메뉴')
+    도담_doc_ref.document('조식').set({
+        u'메뉴': "{0}".format(ddlist2[i]),        
+        })
+    도담_doc_ref.document('중식').set({
+        u'메뉴': "{0}".format(ddlist3[i]),        
+        })
+    도담_doc_ref.document('석식').set({
+        u'메뉴': "{0}".format(ddlistN[i]),        
+        })
+#    도담_doc_ref.document('석식').set({
+#        u'메뉴': "고추장삼겹살덮밥",        
+#        })
+
+gslist2=[]
+for i in ary:
+    soup = BeautifulSoup(i.text, "html.parser")
+    em=soup.find(text="중식4")
+    도담식당메뉴3=em.find_next("b")
+    찐=도담식당메뉴3.find_next()
+    print(도담식당메뉴3.text)
+    ddlist3.append(도담식당메뉴3.text)
+
+gslist3=[]
+for i in ary:
+    soup = BeautifulSoup(i.text, "html.parser")
+    em=soup.find(text="석식1")
+    도담식당석식=em.find_next("b")
+    찐석=도담식당석식.find_next()
+    print(도담식당석식.text)
+    ddlistN.append(도담식당석식.text)
