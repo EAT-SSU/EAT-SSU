@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
-    private String datetext;
+    public String datetext="";
     FirebaseFirestore db;
     private FirebaseDatabase database;
     private RecyclerView recyclerView;
@@ -126,10 +126,12 @@ public class HomeFragment extends Fragment {
         dateBtn.setText(mYear + "-" + (mMonth + 1) + "-" + mDay);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @SuppressLint("DefaultLocale")
             @Override
 
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 dateBtn.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                //datetext = String.format("%4d.%2d.%2d", year, (month+1), dayOfMonth);
                 datetext = year + "." + (month + 1) + "." + dayOfMonth;
 
             }
@@ -183,14 +185,14 @@ public class HomeFragment extends Fragment {
         super.onResume();
         arrayList2.clear();
         arrayList.clear();
-        EventChangeListener2();
-        EventChangeListener();
+        EventChangeListener2(datetext);
+        EventChangeListener(datetext);
     }
 
 
 
-    private void EventChangeListener() {
-        db.collection("숭실도담식당").document("2022.12.12").collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
+    private void EventChangeListener(String datetext) {
+        db.collection("숭실도담식당").document(datetext).collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -217,8 +219,8 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    private void EventChangeListener2() {
-        db.collection("학생식당").document("2022.12.12").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
+    private void EventChangeListener2(String datetext) {
+        db.collection("학생식당").document(datetext).collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

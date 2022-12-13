@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
@@ -74,10 +75,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 int position = holder.getAbsoluteAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    final Menu item = arrayList.get(position);
+                    String item = String.valueOf(arrayList.get(position).get메뉴());
+                    intent.putExtra("Menu", item);
                     context.startActivity(intent);
                 }
-
             }
         });
         return holder;
