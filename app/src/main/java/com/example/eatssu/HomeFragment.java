@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
 //    private ViewPager2 viewPager2;
     private MenuAdapter adapter;
     private DodamAdapter adapter2;
+    private GisikAdapter adapter3;
     private View view;
     private ImageButton haksikBtn;
     private ImageButton dodamBtn;
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment {
     Button dateBtn;
     private ArrayList<Menu> arrayList = new ArrayList<>();
     private ArrayList<Dodam> arrayList2 = new ArrayList<>();
+    private ArrayList<Gisik> arrayList3 = new ArrayList<>();
 
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
@@ -84,13 +86,13 @@ public class HomeFragment extends Fragment {
         view=inflater.inflate(R.layout.fragment_home,container,false);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Fetching data");
+
         progressDialog.show();
 //        tabLayout = view.findViewById(R.id.tab_main);
 //        viewPager2 = view.findViewById(R.id.vp_main);
         adapter = new MenuAdapter(arrayList, getActivity());
         adapter2 = new DodamAdapter(arrayList2, getActivity());
-        //adapter3 = new HaksikAdapter(arrayList2, getActivity());
+        adapter3 = new GisikAdapter(arrayList3, getActivity());
 //        viewPager2.setAdapter(adapter);
         dateBtn = view.findViewById(R.id.main_date_btn);
         db = FirebaseFirestore.getInstance();
@@ -99,6 +101,7 @@ public class HomeFragment extends Fragment {
         recyclerView3 = view.findViewById(R.id.rv1_gisikdata);
         recyclerView.setAdapter(adapter);
         recyclerView2.setAdapter(adapter2);
+        recyclerView3.setAdapter(adapter3);
 //        recyclerView3.setAdapter(adapter3);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -132,7 +135,7 @@ public class HomeFragment extends Fragment {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 dateBtn.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                 //datetext = String.format("%4d.%2d.%2d", year, (month+1), dayOfMonth);
-                datetext = year + "." + (month + 1) + "." + dayOfMonth;
+                datetext = String.valueOf(year) + "." + String.valueOf(month + 1) + "." + String.valueOf(dayOfMonth);
 
             }
         }, mYear, mMonth, mDay);
@@ -183,16 +186,19 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        progressDialog.setMessage("Fetching data");
         arrayList2.clear();
         arrayList.clear();
-        EventChangeListener2(datetext);
-        EventChangeListener(datetext);
+        arrayList3.clear();
+        EventChangeListener2();
+        EventChangeListener();
+        EventChangeListener3();
     }
 
 
 
-    private void EventChangeListener(String datetext) {
-        db.collection("숭실도담식당").document(datetext).collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
+    private void EventChangeListener() {
+        db.collection("숭실도담식당").document("2022.12.13").collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -219,8 +225,8 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    private void EventChangeListener2(String datetext) {
-        db.collection("학생식당").document(datetext).collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
+    private void EventChangeListener2() {
+        db.collection("학생식당").document("2022.12.13").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -242,6 +248,34 @@ public class HomeFragment extends Fragment {
                             if(progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                                 adapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
+    }
+    private void EventChangeListener3() {
+        db.collection("기숙사식당").document("2022.12.13").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        assert value != null;
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if(dc.getType() == DocumentChange.Type.ADDED) {
+                                arrayList3.add(dc.getDocument().toObject(Gisik.class));
+                            }
+
+//                            recyclerView2.scrollToPosition(DodamAdapter.getItemCount());
+
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                                adapter3.notifyDataSetChanged();
                             }
                         }
                     }
