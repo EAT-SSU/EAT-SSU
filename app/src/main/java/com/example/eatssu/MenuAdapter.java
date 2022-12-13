@@ -52,7 +52,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         }
 
         public TextView Menu() {
-           return 메뉴;
+            return 메뉴;
         }
 
     }

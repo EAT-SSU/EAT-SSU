@@ -24,7 +24,7 @@ public  class ReviewHolder extends RecyclerView.ViewHolder{
     }
 
     void bind(@NonNull ReviewList reviewList){
-        mID.setText(String.valueOf(reviewList.getID()));
+        mID.setText("ID"+reviewList.getID());
         mContext.setText(String.valueOf(reviewList.getContext()));
         mRating.setRating(reviewList.getRating());
         mDate.setText(reviewList.getDate());
