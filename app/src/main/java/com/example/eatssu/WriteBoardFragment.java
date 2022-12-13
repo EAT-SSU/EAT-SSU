@@ -85,7 +85,7 @@ public class WriteBoardFragment extends Fragment {
     public static String getCurrentTimeStamp(){
         try {
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             String currentDateTime = dateFormat.format(new Date()); // Find todays date
 
             return currentDateTime;
@@ -103,15 +103,9 @@ public class WriteBoardFragment extends Fragment {
         Button uploadButton = view.findViewById(R.id.btn_uploadBoard);
         EditText title = view.findViewById(R.id.et_title);
         EditText content = view.findViewById(R.id.et_content);
-        TextView id = view.findViewById(R.id.data_id);
         TextView likeCount = view.findViewById(R.id.write_id);
         TextView messageCount = view.findViewById(R.id.message_id);
-        //String uid=auth.getCurrentUser().getUid();
-//
-//        Long tsLong = System.currentTimeMillis()/1000;
-//        String ts = tsLong.toString();
 
-        //String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
         String date=getCurrentTimeStamp();
         auth = FirebaseAuth.getInstance();
         String uid=auth.getCurrentUser().getUid();
