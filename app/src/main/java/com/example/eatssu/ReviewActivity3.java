@@ -66,6 +66,8 @@ public class ReviewActivity3 extends AppCompatActivity {
         String timestamp=getCurrentTimeStamp2();
         auth = FirebaseAuth.getInstance();
         String UID=auth.getCurrentUser().getUid();
+        String trimId=UID.substring(0,4);
+
 
 
         buttonNext.setOnClickListener(new View.OnClickListener(){
@@ -75,7 +77,7 @@ public class ReviewActivity3 extends AppCompatActivity {
 
                 Map<String, Object> data = new HashMap<>();
                 putReview = writeReview.getText().toString();
-                data.put("ID",UID);
+                data.put("ID",trimId);
                 data.put("context",putReview);
                 data.put("date",date);
                 data.put("rating",getRating);
@@ -160,6 +162,11 @@ public class ReviewActivity3 extends AppCompatActivity {
 
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 
 
 }

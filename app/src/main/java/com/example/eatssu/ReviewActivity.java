@@ -74,6 +74,7 @@ public class ReviewActivity extends AppCompatActivity {
                 holder.bind(model);
             }
 
+
             @NonNull
             @Override
             public ReviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -100,7 +101,6 @@ public class ReviewActivity extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
-
 
 
 }
