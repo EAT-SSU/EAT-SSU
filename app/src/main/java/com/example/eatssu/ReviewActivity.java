@@ -29,7 +29,7 @@ public class ReviewActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private FirestorePagingAdapter<ReviewList,ReviewHolder> adapter;
-    public  String exampleMenu="설렁탕";
+    public  String exampleMenu="조오오오오옹오오옹오오오오오오오오오오오오오옹오오오온나 긴 메뉴이름";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

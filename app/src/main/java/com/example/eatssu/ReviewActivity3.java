@@ -55,7 +55,7 @@ public class ReviewActivity3 extends AppCompatActivity {
         Intent intent = getIntent();
         Float getRating = intent.getFloatExtra("rating",0);
         String getMenu = intent.getStringExtra("Menu");
-        menuName.setText(getMenu);
+        menuName.setText(getMenu+" 을(를) 평가해주세요");
 
         db = FirebaseFirestore.getInstance();
         Button buttonNext = findViewById(R.id.registReviewBtn);
