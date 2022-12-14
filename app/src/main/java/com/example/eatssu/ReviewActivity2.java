@@ -40,7 +40,7 @@ public class ReviewActivity2 extends AppCompatActivity {
 
 
 
-        menuName.setText(getMenu);
+        menuName.setText(getMenu+" 을(를) 평가해주세요");
 
         countstar.setText("0");
 

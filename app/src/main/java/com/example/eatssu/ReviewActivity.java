@@ -29,8 +29,8 @@ public class ReviewActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private FirestorePagingAdapter<ReviewList,ReviewHolder> adapter;
+    public  String exampleMenu="설렁탕";
 
-    public  String exampleMenu= "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
