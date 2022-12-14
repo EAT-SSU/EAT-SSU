@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class DodamAdapter extends RecyclerView.Adapter<DodamAdapter.ViewHolder> {
-
-    private static ArrayList<Dodam> arrayList2;
+public class GisikAdapter extends RecyclerView.Adapter<GisikAdapter.ViewHolder>{
+    private static ArrayList<Gisik> arrayList3;
     private Context context;
 
-    public DodamAdapter(ArrayList<Dodam> arrayList, Context context) {
-        this.arrayList2 = arrayList;
+    public GisikAdapter(ArrayList<Gisik> arrayList, Context context) {
+        this.arrayList3 = arrayList;
         this.context = context;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -27,7 +26,7 @@ public class DodamAdapter extends RecyclerView.Adapter<DodamAdapter.ViewHolder> 
 
         public ViewHolder(View view) {
             super(view);
-            메뉴 = (TextView) view.findViewById(R.id.item_edt_dodamcontents);
+            메뉴 = (TextView) view.findViewById(R.id.item_edt_gisikcontents);
         }
 
         public TextView getMenu() {
@@ -37,16 +36,16 @@ public class DodamAdapter extends RecyclerView.Adapter<DodamAdapter.ViewHolder> 
 
     }
 
-    public DodamAdapter(){} //생성자
+    public GisikAdapter(){} //생성자
 
     @NonNull
     @Override
-    public DodamAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GisikAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.dodam_recyclerview_data, parent, false);
-        DodamAdapter.ViewHolder holder = new DodamAdapter.ViewHolder(view);
+                .inflate(R.layout.gisik_recyclerview_data, parent, false);
+        GisikAdapter.ViewHolder holder = new GisikAdapter.ViewHolder(view);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +54,7 @@ public class DodamAdapter extends RecyclerView.Adapter<DodamAdapter.ViewHolder> 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 int position = holder.getAbsoluteAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    String item = String.valueOf(arrayList2.get(position).get메뉴());
+                    String item = String.valueOf(arrayList3.get(position).get메뉴());
                     intent.putExtra("Menu", item);
                     context.startActivity(intent);
                 }
@@ -67,23 +66,13 @@ public class DodamAdapter extends RecyclerView.Adapter<DodamAdapter.ViewHolder> 
 
 
     @Override
-    public void onBindViewHolder(@NonNull DodamAdapter.ViewHolder viewholder, int position) {
-//        viewholder.중식1.setText(arrayList2.get(position).get중식1());
-//        viewholder.중식4.setText(arrayList2.get(position).get중식4());
-//        viewholder.석식1.setText(arrayList2.get(position).get석식1());
-        viewholder.메뉴.setText(arrayList2.get(position).get메뉴());
-//        viewholder.price.setText("5000");
-//        viewholder.price.setText("5000");
-//        viewholder.price.setText("5000");
-//        viewholder.rate.setText("4.5");
-//        viewholder.rate.setText("4.5");
-//        viewholder.rate.setText("4.5");
+    public void onBindViewHolder(@NonNull GisikAdapter.ViewHolder viewholder, int position) {
+        viewholder.메뉴.setText(arrayList3.get(position).get메뉴());
     }
 
     @Override
     public int getItemCount() {
 
-        return (arrayList2 !=null? arrayList2.size():0);
+        return (arrayList3 !=null? arrayList3.size():0);
     }
 }
-
