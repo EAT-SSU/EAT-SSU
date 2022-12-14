@@ -1,5 +1,7 @@
 package com.example.eatssu;
 
+import static java.lang.String.format;
+
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -80,6 +82,7 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {}
 
+    @SuppressLint("DefaultLocale")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -126,16 +129,17 @@ public class HomeFragment extends Fragment {
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 //        datetext = String.valueOf(mYear) + "." + String.valueOf(mMonth+1) + "." + String.valueOf(mDay);
-        dateBtn.setText(mYear + "-" + (mMonth + 1) + "-" + mDay);
+        dateBtn.setText(format("%4d.%02d.%02d", mYear, mMonth+1, mDay));
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @SuppressLint("DefaultLocale")
             @Override
 
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateBtn.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                dateBtn.setText(String.format("%4d.%02d.%02d", year, (month+1), dayOfMonth));
+                datetext = String.format("%4d.%02d.%02d", year, (month+1), dayOfMonth);
                 //datetext = String.format("%4d.%2d.%2d", year, (month+1), dayOfMonth);
-                datetext = String.valueOf(year) + "." + String.valueOf(month + 1) + "." + String.valueOf(dayOfMonth);
+                //datetext = String.valueOf(year) + "." + String.valueOf(month + 1) + "." + String.valueOf(dayOfMonth);
 
             }
         }, mYear, mMonth, mDay);
@@ -187,9 +191,9 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         progressDialog.setMessage("Fetching data");
-        arrayList2.clear();
-        arrayList.clear();
-        arrayList3.clear();
+//        arrayList2.clear();
+//        arrayList.clear();
+//        arrayList3.clear();
         EventChangeListener2();
         EventChangeListener();
         EventChangeListener3();
@@ -198,35 +202,41 @@ public class HomeFragment extends Fragment {
 
 
     private void EventChangeListener() {
-        db.collection("숭실도담식당").document("2022.12.13").collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null) {
-                            if(progressDialog.isShowing()) {
-                                progressDialog.dismiss();
+        arrayList2.clear();
+        String select = datetext;
+        if (datetext != "") {
+            db.collection("숭실도담식당").document(String.valueOf(datetext)).collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
+                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                            if (error != null) {
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
+                                Log.e("Firestore error", error.getMessage());
+                                return;
                             }
-                            Log.e("Firestore error", error.getMessage());
-                            return;
-                        }
-                        assert value != null;
-                        for (DocumentChange dc : value.getDocumentChanges()) {
-                            if(dc.getType() == DocumentChange.Type.ADDED) {
-                                arrayList2.add(dc.getDocument().toObject(Dodam.class));
-                            }
+                            assert value != null;
+                            for (DocumentChange dc : value.getDocumentChanges()) {
+                                if (dc.getType() == DocumentChange.Type.ADDED) {
+                                    arrayList2.add(dc.getDocument().toObject(Dodam.class));
+                                }
 //                            recyclerView2.scrollToPosition(DodamAdapter.getItemCount());
 
-                            if(progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                                adapter2.notifyDataSetChanged();
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                    adapter2.notifyDataSetChanged();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     private void EventChangeListener2() {
-        db.collection("학생식당").document("2022.12.13").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
+        arrayList.clear();
+        String select=datetext;
+        db.collection("학생식당").document("2022.12.15").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -254,6 +264,7 @@ public class HomeFragment extends Fragment {
                 });
     }
     private void EventChangeListener3() {
+        arrayList3.clear();
         db.collection("기숙사식당").document("2022.12.13").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
