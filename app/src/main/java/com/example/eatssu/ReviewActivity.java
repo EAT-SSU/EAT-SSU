@@ -29,12 +29,17 @@ public class ReviewActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private FirestorePagingAdapter<ReviewList,ReviewHolder> adapter;
-    public  String exampleMenu="조오오오오옹오오옹오오오오오오오오오오오오오옹오오오온나 긴 메뉴이름";
+    public  String exampleMenu="설렁탕";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
+        Intent intent = getIntent();
+        intent.getStringExtra("Menu");
+        exampleMenu = intent.getStringExtra("Menu");
 
         TextView menuName = findViewById(R.id.menu);
         TextView CountReview = findViewById(R.id.countReview);
@@ -44,8 +49,8 @@ public class ReviewActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager); //LayoutManager 설정
 
-        Intent intentFrom3 = getIntent();
-        String getRating = intentFrom3.getStringExtra("countReview");
+//        Intent intentFrom3 = getIntent();
+//        String getRating = intentFrom3.getStringExtra("countReview");
 
         // CountReview.setText(String.valueOf(getRating));
 

@@ -1,5 +1,7 @@
 package com.example.eatssu;
 
+import static java.lang.String.format;
+
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -50,6 +52,7 @@ public class HomeFragment extends Fragment {
 //    private ViewPager2 viewPager2;
     private MenuAdapter adapter;
     private DodamAdapter adapter2;
+    private GisikAdapter adapter3;
     private View view;
     private ImageButton haksikBtn;
     private ImageButton dodamBtn;
@@ -57,10 +60,11 @@ public class HomeFragment extends Fragment {
     Button dateBtn;
     private ArrayList<Menu> arrayList = new ArrayList<>();
     private ArrayList<Dodam> arrayList2 = new ArrayList<>();
+    private ArrayList<Gisik> arrayList3 = new ArrayList<>();
 
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
-    private String datetext;
+    public String datetext="";
     FirebaseFirestore db;
     private FirebaseDatabase database;
     private RecyclerView recyclerView;
@@ -78,19 +82,20 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {}
 
+    @SuppressLint("DefaultLocale")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_home,container,false);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Fetching data");
+
         progressDialog.show();
 //        tabLayout = view.findViewById(R.id.tab_main);
 //        viewPager2 = view.findViewById(R.id.vp_main);
         adapter = new MenuAdapter(arrayList, getActivity());
         adapter2 = new DodamAdapter(arrayList2, getActivity());
-        //adapter3 = new HaksikAdapter(arrayList2, getActivity());
+        adapter3 = new GisikAdapter(arrayList3, getActivity());
 //        viewPager2.setAdapter(adapter);
         dateBtn = view.findViewById(R.id.main_date_btn);
         db = FirebaseFirestore.getInstance();
@@ -99,6 +104,7 @@ public class HomeFragment extends Fragment {
         recyclerView3 = view.findViewById(R.id.rv1_gisikdata);
         recyclerView.setAdapter(adapter);
         recyclerView2.setAdapter(adapter2);
+        recyclerView3.setAdapter(adapter3);
 //        recyclerView3.setAdapter(adapter3);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -123,14 +129,17 @@ public class HomeFragment extends Fragment {
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 //        datetext = String.valueOf(mYear) + "." + String.valueOf(mMonth+1) + "." + String.valueOf(mDay);
-        dateBtn.setText(mYear + "-" + (mMonth + 1) + "-" + mDay);
+        dateBtn.setText(format("%4d.%02d.%02d", mYear, mMonth+1, mDay));
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @SuppressLint("DefaultLocale")
             @Override
 
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateBtn.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                datetext = year + "." + (month + 1) + "." + dayOfMonth;
+                dateBtn.setText(String.format("%4d.%02d.%02d", year, (month+1), dayOfMonth));
+                datetext = String.format("%4d.%02d.%02d", year, (month+1), dayOfMonth);
+                //datetext = String.format("%4d.%2d.%2d", year, (month+1), dayOfMonth);
+                //datetext = String.valueOf(year) + "." + String.valueOf(month + 1) + "." + String.valueOf(dayOfMonth);
 
             }
         }, mYear, mMonth, mDay);
@@ -181,44 +190,53 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        arrayList2.clear();
-        arrayList.clear();
+        progressDialog.setMessage("Fetching data");
+//        arrayList2.clear();
+//        arrayList.clear();
+//        arrayList3.clear();
         EventChangeListener2();
         EventChangeListener();
+        EventChangeListener3();
     }
 
 
 
     private void EventChangeListener() {
-        db.collection("숭실도담식당").document("2022.12.12").collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null) {
-                            if(progressDialog.isShowing()) {
-                                progressDialog.dismiss();
+        arrayList2.clear();
+        String select = datetext;
+        if (datetext != "") {
+            db.collection("숭실도담식당").document(String.valueOf(datetext)).collection("메뉴").orderBy("메뉴", Query.Direction.ASCENDING)
+                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                            if (error != null) {
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
+                                Log.e("Firestore error", error.getMessage());
+                                return;
                             }
-                            Log.e("Firestore error", error.getMessage());
-                            return;
-                        }
-                        assert value != null;
-                        for (DocumentChange dc : value.getDocumentChanges()) {
-                            if(dc.getType() == DocumentChange.Type.ADDED) {
-                                arrayList2.add(dc.getDocument().toObject(Dodam.class));
-                            }
+                            assert value != null;
+                            for (DocumentChange dc : value.getDocumentChanges()) {
+                                if (dc.getType() == DocumentChange.Type.ADDED) {
+                                    arrayList2.add(dc.getDocument().toObject(Dodam.class));
+                                }
 //                            recyclerView2.scrollToPosition(DodamAdapter.getItemCount());
 
-                            if(progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                                adapter2.notifyDataSetChanged();
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                    adapter2.notifyDataSetChanged();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     private void EventChangeListener2() {
-        db.collection("학생식당").document("2022.12.12").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
+        arrayList.clear();
+        String select=datetext;
+        db.collection("학생식당").document("2022.12.15").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -240,6 +258,35 @@ public class HomeFragment extends Fragment {
                             if(progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                                 adapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
+    }
+    private void EventChangeListener3() {
+        arrayList3.clear();
+        db.collection("기숙사식당").document("2022.12.13").collection("메뉴").orderBy("메뉴", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        assert value != null;
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if(dc.getType() == DocumentChange.Type.ADDED) {
+                                arrayList3.add(dc.getDocument().toObject(Gisik.class));
+                            }
+
+//                            recyclerView2.scrollToPosition(DodamAdapter.getItemCount());
+
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                                adapter3.notifyDataSetChanged();
                             }
                         }
                     }
