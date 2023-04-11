@@ -18,6 +18,6 @@
 
 |이름|이메일|담당기능|
 |:---:|:---:|:---:|
-|[유진](https://github.com/HI-JIN2)|jini1514@soongsil.ac.kr|`게시판`, `메뉴 크롤링`,`로그인/회원가입`|
+|[유진](https://github.com/HI-JIN2)|jini1514@soongsil.ac.kr|`로그인/회원가입`,`게시판`, `메뉴 크롤링`|
 |[박윤빈](https://github.com/binisnull)|dbsqlssss0704@gmail.com| `리뷰 목록`, `리뷰 작성`|
 |[이현지](https://github.com/Amepistheo)|kellylhji@naver.com |`캘린더`, `메뉴 리스트`,`지도 띄우기`|
